@@ -159,5 +159,18 @@ class Regime_Model extends CI_Model
             return 0;
         }
     }
+    
+    public function getActivitesRegimes($id)
+    {
+        $sql= "select regime.idActivite as regime,Activite.nom,apport,frequence,prix from regime join activite on regime.idActivite=activite.idActivite where idregime=$id";
+            $query = $this->db->query($sql);
+            $result = array();
+
+            foreach($query->result_array() as $row)
+            {
+                $result[]=$row;
+            }
+            return $result;
+    }
 }
 ?>
