@@ -76,7 +76,7 @@ class Regime_Model extends CI_Model
         $query = $this->db->query($sql);
         $row = $query->row_array();
     
-        if ($row) {
+        if (!empty($row)) {
             return $row['prixTotal'];
         } else {
             return 0;
@@ -88,7 +88,7 @@ class Regime_Model extends CI_Model
         $query = $this->db->query($sql);
         $row = $query->row_array();
     
-        if ($row) {
+        if (!empty($row)) {
             return $row['lastIdRegime'];
         } else {
             return 0;
