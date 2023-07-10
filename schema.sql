@@ -40,8 +40,7 @@ CREATE TABLE Regime(
     jourActivite int,
     finActivite int,
     nom VARCHAR(200),
-    FOREIGN KEY(idActivite) REFERENCES Activite(idActivite),
-    PRIMARY KEY(idRegime,idActivite)
+    FOREIGN KEY(idActivite) REFERENCES Activite(idActivite)
 );
 
 CREATE TABLE Objectif(
@@ -73,6 +72,8 @@ CREATE TABLE PendingWallet(
     FOREIGN KEY(idProfile) REFERENCES Profile(idProfile),
     FOREIGN KEY(idCode) REFERENCES Code(idCode)
 );
+
+INSERT INTO Profile(username,passw,privilege) VALUES("admin","admin",1);
 
 INSERT INTO TypeActivite(nom) VALUES ('Sport');
 INSERT INTO TypeActivite(nom) VALUES ('Repas');

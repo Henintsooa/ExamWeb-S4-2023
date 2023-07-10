@@ -3,35 +3,33 @@ class Regime_Model extends CI_Model
 {
     public function createRegime($idRegime, $idActivite, $jourActivite, $finActivite, $nom)
     {
+
         if ($jourActivite > $finActivite || $nom == "") {
             return false;
         }
     
         $regimes = $this->getRegimesById($idRegime);
+
         if (!empty($regimes)) {
            
-            $lastRegime = end($regimes);  // Récupérer le dernier régime
-            $lastRegimeId = $lastRegime['idRegime'];
-            $data = array(
-                'finActivite' => $finActivite
-            );
-            $this->db->where('idRegime', $lastRegimeId);
-            $this->db->update('Regime', $data);
-        } else {
+            $lastRegime = $regimes[0];  // Récupérer le dernier régime
+            $finActivite = intval($lastRegime['finActivite']);
+
+        }
          
-            $data = array(
-                'idRegime' => $idRegime,
-                'idActivite' => $idActivite,
-                'jourActivite' => $jourActivite,
-                'finActivite' => $finActivite,
-                'nom' => $nom
-            );
-            $result = $this->db->insert('Regime', $data);
-            if ($result) {
-                return true;
-            } else {
-                return false;
-            }
+        $data = array(
+            'idRegime' => $idRegime,
+            'idActivite' => $idActivite,
+            'jourActivite' => $jourActivite,
+            'finActivite' => $finActivite,
+            'nom' => $nom
+        );
+
+        $result = $this->db->insert('Regime', $data);
+        if ($result) {
+            return true;
+        } else {
+            return false;
         }
     }
     
@@ -112,6 +110,7 @@ class Regime_Model extends CI_Model
             return 0;
         }
     }
+
     public function getRegimesById($id)
     {
         $this->db->where('idRegime', $id);
@@ -134,6 +133,7 @@ class Regime_Model extends CI_Model
         $this->db->where('idActivite', $idActivite);
         $this->db->update('Regime', $data);
     }
+    
     public function getRegimeMaxUtilise()
     {
         $sql= "SELECT r.idRegime AS idRegime, r.nom AS nom, COUNT(*) AS totalUtilisations FROM Objectif o JOIN Regime r ON o.idRegime = r.idRegime  GROUP BY r.idRegime  ORDER BY totalUtilisations DESC LIMIT 5";
@@ -146,6 +146,7 @@ class Regime_Model extends CI_Model
             return array();
         }
     }
+
     public function getNbrVente()
     {
         $sql = "select count(idObjectif) as nbrVente from objectif";
