@@ -107,7 +107,7 @@
                     <div class="box">
                         <div class="form loginBox">
                              <div class="content">
-                                <form id="loginForm" method="post" accept-charset="UTF-8">
+                                <form action="" id="loginForm" method="post" accept-charset="UTF-8">
                                     <input id="email" class="form-control" type="text" name="username" placeholder="Nom d'utilisateur">
                                     <input id="password" class="form-control" type="password" name="password" placeholder="Mot de passe">
                                     <button class="btn btn-default btn-login" type="submit">Se connecter</button>
