@@ -45,6 +45,7 @@ CREATE TABLE Regime(
 
 CREATE TABLE Objectif(
     idObjectif INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    idProfile int,
     idRegime int,
     poids double,
     montant double,
