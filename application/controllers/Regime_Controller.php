@@ -11,10 +11,6 @@ class Regime_Controller extends CI_Controller {
         $nom = $this->input->post('nom-regime');
 
         $this->load->model('Regime_Model');
-        
-        var_dump($idRegime);
-        $idRegime = 99999;
-        var_dump($idRegime);
 
         if($idRegime == 99999){ 
             $id = $this->Regime_Model->getLastRegime() ; 
@@ -22,18 +18,17 @@ class Regime_Controller extends CI_Controller {
             var_dump($idRegime);
         }else{
             $regime = $idRegime ;
-            $idRegime = explode($regime,"-")[0];
-            $nom = explode($regime,"-")[1];
-            
+            $idRegime = explode("-",$regime)[0];
+            $nom = explode("-",$regime)[1]; 
         }
 
-        // $result = $this->Regime_Model-> createRegime($idRegime, $idActivite, $jourActivite, $finActivite, $nom);
+        $result = $this->Regime_Model-> createRegime($idRegime, $idActivite, $jourActivite, $finActivite, $nom);
 
-        // if($result){
-        //     echo 'success';
-        // }else{
-        //     echo 'error';
-        // }
+        if($result){
+            echo 'success';
+        }else{
+            echo 'error';
+        }
     }
     
 }
