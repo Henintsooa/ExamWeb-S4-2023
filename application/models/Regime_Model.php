@@ -133,6 +133,18 @@ class Regime_Model extends CI_Model
         $this->db->where('idActivite', $idActivite);
         $this->db->update('Regime', $data);
     }
-
+    public function getRegimeMaxUtilise()
+    {
+        $sql= "select max(idRegime) as maxRegime from objectif;";
+        $query = $this->db->query($sql);
+        $row = $query->row_array();
+    
+        if (!empty($row)) {
+            return $row['maxRegime'];
+        } else {
+            return 0;
+        }
+    }
+    
 }
 ?>
