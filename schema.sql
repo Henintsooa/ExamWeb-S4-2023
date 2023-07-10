@@ -35,7 +35,7 @@ CREATE TABLE Activite(
 );
 
 CREATE TABLE Regime(
-    idRegime INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    idRegime INT NOT NULL,
     idActivite int,
     jourActivite int,
     finActivite int,
@@ -51,14 +51,22 @@ CREATE TABLE Objectif(
 );
 
 CREATE TABLE Wallet(
-    idWallet INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    montant double
-   
+    idProfile INT,
+    montant double,
+    FOREIGN KEY(idProfile) REFERENCES Profile(idProfile)
 );
 
 CREATE TABLE Code(
     idCode INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     montant double,
     isUsed int,
-    code int
+    code VARCHAR(255)
+);
+
+CREATE TABLE PendingWallet(
+    idProfile INT,
+    idCode int,
+    status int,
+    FOREIGN KEY(idProfile) REFERENCES Profile(idProfile),
+    FOREIGN KEY(idCode) REFERENCES Code(idCode)
 );
