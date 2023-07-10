@@ -7,8 +7,14 @@ class Home_Controller extends CI_Controller {
         if(isset($_SESSION['userdata'])){
 
             $viewData['userdata'] = $_SESSION['userdata'];
-            $this->load->view('home_view', $viewData);
 
+            if( $viewData['userdata']['privilege'] == 1 ){
+
+                redirect('home_controller/loadbackoffice');
+
+            }else{
+                $this->load->view('home_view', $viewData);
+            }            
         }else{
             redirect('welcome');
         }
@@ -17,6 +23,15 @@ class Home_Controller extends CI_Controller {
 
     public function login(){
         $this->load->view('login_view');
+    }
+
+    public function loadBackOffice(){
+        // get all activity
+        $this->load->model('TypeActivite_Model');
+
+        $viewData['typeActivites'] = $this->TypeActivite_Model->getTypeActivites(); 
+
+        $this->load->view('backoffice_view', $viewData);
     }
 
 }
