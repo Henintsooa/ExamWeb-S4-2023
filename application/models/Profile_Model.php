@@ -12,7 +12,7 @@ class Profile_Model extends CI_Model
         }
     }
     
-    public function createUser($username, $password){
+    public function createProfile($username, $password){
         if( $username != "" && $password != "" ){
 
             $query = $this->db->get_where('Profile',array('username'=>$username));
@@ -39,7 +39,7 @@ class Profile_Model extends CI_Model
         
     }
 
-    public function getUserData($username){
+    public function getProfileData($username){
         $query = $this->db->get_where('Profile',array('username'=>$username));
 
         if($query->num_rows() === 1){

@@ -15,7 +15,7 @@ class Profile_Controller extends CI_Controller {
         if ($result) {
             session_start();
 
-            $userdata = $this->Profile_Model->getUserData($username)[0];
+            $userdata = $this->Profile_Model->getProfileData($username)[0];
             if(empty($userdata)){
                 echo 'error' ;
             }
@@ -35,12 +35,12 @@ class Profile_Controller extends CI_Controller {
         $username = $this->input->post('username');
         $password = $this->input->post('password');
 
-        $result = $this->Profile_Model->createUser($username, $password);
+        $result = $this->Profile_Model->createProfile($username, $password);
 
         if ($result) {
             session_start();
 
-            $userdata = $this->Profile_Model->getUserData($username)[0];
+            $userdata = $this->Profile_Model->getProfileData($username)[0];
             if(empty($userdata)){
                 echo 'error' ;
             }
