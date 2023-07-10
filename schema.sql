@@ -63,7 +63,7 @@ CREATE TABLE Code(
     idCode INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     montant double,
     isUsed int,
-    code VARCHAR(255)
+    code VARCHAR(255) unique
 );
 
 CREATE TABLE PendingWallet(
