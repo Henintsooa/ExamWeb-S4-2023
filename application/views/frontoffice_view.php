@@ -9,7 +9,7 @@
     document.addEventListener(
         'DOMContentLoaded', function(){
             var objectifForm = document.getElementById('objectifForm');
-            var userDataForm = document.getElementById('userDataForm');
+            var userDataForm = document.getElementById('userdataForm');
             var errorContainerobjectif = document.getElementById('errorContainerObjectif');
             var errorContainerUserdata = document.getElementById('errorContainerUserdata');
 
@@ -94,7 +94,7 @@
             <label for="poids">poids :</label>
             <input type="number" step="1" name="poids" id="poids" required min=0><br><br>
 
-            <input type="submit" value="Suggerer regimes">
+            <input type="submit" value="inserer data">
         </form> 
         <p id="errorContainerUserdata"></p>
     </div>
@@ -110,6 +110,11 @@
             <input type="submit" value="Suggerer regimes">
         </form>
         <p id="errorContainerObjectif"></p>
+    </div>
+
+    <!-- list suggestion -->
+    <div id="suggestionsList">
+
     </div>
 </body>
 </html>
