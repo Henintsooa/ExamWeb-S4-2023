@@ -2,6 +2,7 @@
 class Activite_Model extends CI_Model
 {
     public function createActivite($nom, $idType, $apport, $frequence, $prix){
+        if($frequence <= 0 || $prix < 0  ){ return false; }
         $data = array(
             'nom' => $nom,
             'idType' => $idType,
