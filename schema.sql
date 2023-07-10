@@ -26,7 +26,7 @@ CREATE TABLE TypeActivite(
 
 CREATE TABLE Activite(
     idActivite INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    nom int,
+    nom VARCHAR(200),
     idType int,
     apport double,
     frequence int,
@@ -39,6 +39,7 @@ CREATE TABLE Regime(
     idActivite int,
     jourActivite int,
     finActivite int,
+    nom VARCHAR(200),
     FOREIGN KEY(idActivite) REFERENCES Activite(idActivite),
     PRIMARY KEY(idRegime,idActivite)
 );

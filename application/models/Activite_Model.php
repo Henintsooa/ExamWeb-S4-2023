@@ -29,6 +29,17 @@ class Activite_Model extends CI_Model
         }
     }
     
+    public function getPredictionPoids($idRegime)
+    {
+        $sql = "SELECT SUM(apport) AS poids FROM activite JOIN regime ON activite.idActivite = regime.idActivite WHERE idRegime = '$idRegime'";
+        $query = $this->db->query($sql);
+        $row = $query->row_array();
     
+        if ($row) {
+            return $row['poids'];
+        } else {
+            return 0;
+        }
+    }
 }
 ?>
