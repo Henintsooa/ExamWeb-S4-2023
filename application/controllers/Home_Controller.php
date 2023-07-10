@@ -13,8 +13,8 @@ class Home_Controller extends CI_Controller {
                 redirect('home_controller/loadbackoffice');
 
             }else{
-                $this->load->view('home_view', $viewData);
-            }            
+                redirect('home_controller/loadfrontoffice');
+            }             
         }else{
             redirect('welcome');
         }
@@ -41,8 +41,15 @@ class Home_Controller extends CI_Controller {
     public function loadCodeInterface(){
 
         $viewData['data'] = array();
-
         $this->load->view('code_view', $viewData);
+    }
+
+    public function loadFrontOffice(){
+        session_start();
+
+        $viewData['userdata'] = $_SESSION['userdata'];
+        $this->load->view('frontoffice_view', $viewData);
+
     }
 
 }
