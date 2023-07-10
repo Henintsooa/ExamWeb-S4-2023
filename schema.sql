@@ -26,7 +26,11 @@ CREATE TABLE TypeActivite(
 
 CREATE TABLE Activite(
     idActivite INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+<<<<<<< HEAD
     nom VARCHAR(200),
+=======
+    nom varchar(200),
+>>>>>>> 1a14e11cb5c850c959a392f56ae07e93f612ba51
     idType int,
     apport double,
     frequence int,
@@ -73,3 +77,6 @@ CREATE TABLE PendingWallet(
     FOREIGN KEY(idProfile) REFERENCES Profile(idProfile),
     FOREIGN KEY(idCode) REFERENCES Code(idCode)
 );
+
+INSERT INTO TypeActivite(nom) VALUES ('Sport');
+INSERT INTO TypeActivite(nom) VALUES ('Repas');
