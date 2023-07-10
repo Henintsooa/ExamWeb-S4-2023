@@ -94,6 +94,18 @@ class Regime_Model extends CI_Model
             return 0;
         }
     }
+    public function getRegimesById($id)
+    {
+        $this->db->where('idRegime', $id);
+        $query = $this->db->get('Regime');
+    
+        if ($query->num_rows() > 0) {
+            return $query->result_array();
+        } else {
+            return array();
+        }
+    }
+    
 
 }
 ?>
