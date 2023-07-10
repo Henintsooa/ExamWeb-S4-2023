@@ -39,11 +39,24 @@ class Code_Model extends CI_Model
         }
     }
     
-    
+
     public function ajoutSolde($somme,$idProfile)
     {
         $sql = "SELECT (montant+$somme) as solde FROM wallet where idProfile=$idProfile";
         $this->db->query($sql);
+    }
+
+    public function getCodeValid()
+    {
+        $sql= "select * from code where isUsed = 0";
+        $query = $this->db->query($sql);
+        $result = array();
+
+        foreach($query->result_array() as $row)
+        {
+            $result[]=$row;
+        }
+        return $result;
     }
 }
 ?>

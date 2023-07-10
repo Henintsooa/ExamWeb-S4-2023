@@ -1,12 +1,13 @@
 <?php
 class Regime_Model extends CI_Model
 {
-    public function createRegime($idRegime, $idActivite, $jourActivite, $finActivite){
+    public function createRegime($idRegime, $idActivite, $jourActivite, $finActivite,$nom){
         $data = array(
             'idRegime' => $idRegime,
             'idActivite' => $idActivite,
             'jourActivite' => $jourActivite,
-            'finActivite' => $finActivite
+            'finActivite' => $finActivite,
+            'nom' => $nom
         );
     
         $result = $this->db->insert('Regime', $data);
