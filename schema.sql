@@ -39,7 +39,8 @@ CREATE TABLE Regime(
     idActivite int,
     jourActivite int,
     finActivite int,
-    FOREIGN KEY(idActivite) REFERENCES Activite(idActivite)
+    FOREIGN KEY(idActivite) REFERENCES Activite(idActivite),
+    PRIMARY KEY(idRegime,idActivite)
 );
 
 CREATE TABLE Objectif(
@@ -47,6 +48,7 @@ CREATE TABLE Objectif(
     idRegime int,
     poids double,
     montant double,
+    repetition int,
     FOREIGN KEY(idRegime) REFERENCES Regime(idRegime)
 );
 
