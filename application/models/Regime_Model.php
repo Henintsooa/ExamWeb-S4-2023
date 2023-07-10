@@ -83,6 +83,7 @@ class Regime_Model extends CI_Model
             return 0;
         }
     }
+    
     public function getLastRegime()
     {
         $sql= "select max(idregime) as lastIdRegime from regime";

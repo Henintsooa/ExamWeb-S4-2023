@@ -1,6 +1,6 @@
 <?php
-class Code_Model extends CI_Model
-{
+class Code_Model extends CI_Model{
+    
     public function createCode($montant, $isUsed, $code){
         $data = array(
             'montant' => $montant,
@@ -26,6 +26,7 @@ class Code_Model extends CI_Model
             return array();
         }
     }  
+
     public function checkCode($code, $idProfile){
         $sql = "SELECT code, isUsed, montant FROM code WHERE code = '$code'";
         $query = $this->db->query($sql);
