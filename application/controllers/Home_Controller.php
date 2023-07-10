@@ -38,4 +38,11 @@ class Home_Controller extends CI_Controller {
         $this->load->view('backoffice_view', $viewData);
     }
 
+    public function loadCodeInterface(){
+
+        $viewData['data'] = array();
+
+        $this->load->view('code_view', $viewData);
+    }
+
 }

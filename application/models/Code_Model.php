@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 class Code_Model extends CI_Model
 {
     public function createCode($montant, $isUsed, $code)
@@ -7,6 +8,11 @@ class Code_Model extends CI_Model
             return false;
         }
     
+=======
+class Code_Model extends CI_Model{
+    
+    public function createCode($montant, $isUsed, $code){
+>>>>>>> backOffice_view
         $data = array(
             'montant' => $montant,
             'isUsed' => $isUsed,
@@ -32,6 +38,7 @@ class Code_Model extends CI_Model
             return array();
         }
     }  
+
     public function checkCode($code, $idProfile){
         $sql = "SELECT code, isUsed, montant FROM code WHERE code = '$code'";
         $query = $this->db->query($sql);
