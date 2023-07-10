@@ -19,15 +19,57 @@
 
                 var formData = new FormData(objectifForm);
                 var xhr = new XMLHttpRequest();
-                xhr.open("POST", '<?php echo base_url("objectif_Controller/insertobjectif") ; ?>' , true);
+                xhr.open("POST", '<?php echo base_url("Objectif_Controller/getsuggestions") ; ?>' , true);
 
                 xhr.onreadystatechange = function() {
                     if(xhr.readyState === 4){
                         console.log("HI IM HERE");
 
                         if(xhr.status === 200){
-                            if(xhr.responseText === 'success'){
-                                window.location.href = '<?php echo base_url("Home_Controller/loadobjectifinterface") ; ?>';
+                            if(xhr.responseText !== 'error'){
+
+                                var suggestions = JSON.parse(xhr.responseText);
+                                var suggestionsDiv = document.getElementById("listsuggestion");
+
+                                var html = "";
+                                for (var i = 0; i < suggestions.length; i++) {
+                                    var activites = suggestions[i].activites;
+                                    var idRegime = suggestions[i].idRegime;
+                                    var repetition = suggestions[i].repetition;
+                                    var resultat = suggestions[i].resultat;
+                                    var prixTotal = suggestions[i].prixTotal;
+                                    var durree = suggestions[i].durree;
+
+                                    html += "idRegime: " + idRegime + "<br>";
+                                    html += "repetition: " + repetition + "fois <br>";
+                                    html += "resultat: " + resultat + "kilos <br>";
+                                    html += "prix Total: " + prixTotal + "Ar <br>";
+                                    html += "durree Total: " + durree + "jours <br>";
+                                    html += "Activités:<br>";
+
+                                    for (var j = 0; j < activites.length; j++) {
+                                        var apport = activites[j].apport;
+                                        var frequence = activites[j].frequence;
+                                        var idActivite = activites[j].idActivite;
+                                        var idType = activites[j].idType;
+                                        var nom = activites[j].nom;
+                                        var prix = activites[j].prix;
+
+                                        html += "- Activité " + (j + 1) + "<br>";
+                                        html += "   apport: " + apport + "<br>";
+                                        html += "   fréquence: " + frequence + "<br>";
+                                        html += "   idActivite: " + idActivite + "<br>";
+                                        html += "   idType: " + idType + "<br>";
+                                        html += "   nom: " + nom + "<br>";
+                                        html += "   prix: " + prix + "<br>";
+                                    }
+
+                                    html += "<br>";
+                                }
+
+                                suggestionsDiv.innerHTML = html;
+                                console.log(suggestions);
+
                             }else{
                                 errorContainerobjectif.textContent = 'Donnes Invalides';
                             }
@@ -109,7 +151,7 @@
         <form method="POST" id="objectifForm" >
 
             <label for="objectif">objectif :</label>
-            <input type="number" step="1" name="montant" id="objectif" required min=0><br><br>
+            <input type="number" step="1" name="objectif" id="objectif" required><br><br>
 
             <input type="submit" value="Suggerer regimes">
         </form>
@@ -117,7 +159,7 @@
     </div>
 
     <!-- list suggestion -->
-    <div id="suggestionsList">
+    <div id="listsuggestion">
 
     </div>
 </body>

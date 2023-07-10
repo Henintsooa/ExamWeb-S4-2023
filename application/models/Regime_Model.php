@@ -60,7 +60,10 @@ class Regime_Model extends CI_Model
                 $result[] = array(
                     'idRegime' => $row['idRegime'],
                     'resultat' => $resultat,
-                    'repetition' => $repetition
+                    'repetition' => $repetition,
+                    'durree' => $repetition * ($this->getRegimesById($row['idRegime'])[0]['finActivite']),
+                    'activites' => $this->getActivitiesByID($row['idRegime']),
+                    'prixTotal' => $this->getPrixParDuree($row['idRegime'])*$repetition
                 );
             }
         } elseif ($poids < 0) {
@@ -69,12 +72,15 @@ class Regime_Model extends CI_Model
         
             foreach ($query->result_array() as $row) {
                 $apport = abs($row['resultat']);  // Utilisation de abs() pour obtenir la valeur absolue de $apport
-                $repetition = floor($poids / $apport);
-                $resultat = $repetition * (-1) * $apport;  // Multiplication négative ici
+                $repetition = floor($poids / $apport) * (-1);
+                $resultat = $repetition * $apport * (-1);  // Multiplication négative ici
                 $result[] = array(
                     'idRegime' => $row['idRegime'],
                     'resultat' => $resultat,
-                    'repetition' => $repetition
+                    'repetition' => $repetition,
+                    'durree' => $repetition * ($this->getRegimesById($row['idRegime'])[0]['finActivite']),
+                    'activites' => $this->getActivitiesByID($row['idRegime']),
+                    'prixTotal' => $this->getPrixParDuree($row['idRegime'])*$repetition
                 );
             }
         }
@@ -82,6 +88,18 @@ class Regime_Model extends CI_Model
         
     
         return $result;
+    }
+
+    public function getActivitiesByID($id){
+        $sql = "SELECT Activite.* FROM Activite JOIN Regime ON Regime.idActivite=Activite.idActivite WHERE Regime.idRegime = ".$id;
+        $query = $this->db->query($sql);
+        $row = $query->result_array();
+
+        if (!empty($row)) {
+            return $row;
+        } else {
+            return array();
+        }
     }
     
 
