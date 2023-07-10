@@ -2,7 +2,6 @@
 class Regime_Model extends CI_Model
 {
     public function createRegime($idRegime, $idActivite, $jourActivite, $finActivite,$nom){
-        if($jourActivite > $finActivite || $nom == "" ){return false;}
         $data = array(
             'idRegime' => $idRegime,
             'idActivite' => $idActivite,
@@ -30,11 +29,46 @@ class Regime_Model extends CI_Model
             return array();
         }
     }
-
-    public function getSuggestionRegime()
+    
+    public function getSuggestionRegime($poids)
     {
-
+        $result = array();
+    
+        if ($poids > 0) {
+            $sql = "SELECT idRegime, resultat FROM augmenterPoids";
+            $query = $this->db->query($sql);
+    
+            foreach ($query->result_array() as $row) {
+                $apport = $row['resultat'];
+                $repetition = floor($poids / $apport);
+                $resultat = $repetition*$apport;
+                $result[] = array(
+                    'idRegime' => $row['idRegime'],
+                    'resultat' => $resultat,
+                    'repetition' => $repetition
+                );
+            }
+        } elseif ($poids < 0) {
+            $sql = "SELECT idRegime, resultat FROM reduirePoids";
+            $query = $this->db->query($sql);
+        
+            foreach ($query->result_array() as $row) {
+                $apport = abs($row['resultat']);  // Utilisation de abs() pour obtenir la valeur absolue de $apport
+                $repetition = floor($poids / $apport);
+                $resultat = $repetition * (-1) * $apport;  // Multiplication négative ici
+                $result[] = array(
+                    'idRegime' => $row['idRegime'],
+                    'resultat' => $resultat,
+                    'repetition' => $repetition
+                );
+            }
+        }
+        
+        
+    
+        return $result;
     }
+    
 
     public function getPrixParDuree($idRegime)
     {
@@ -54,7 +88,7 @@ class Regime_Model extends CI_Model
         $query = $this->db->query($sql);
         $row = $query->row_array();
     
-        if (!empty($row)) {
+        if ($row) {
             return $row['lastIdRegime'];
         } else {
             return 0;
