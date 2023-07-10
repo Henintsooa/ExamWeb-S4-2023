@@ -36,7 +36,7 @@ class Activite_Model extends CI_Model
         $query = $this->db->query($sql);
         $row = $query->row_array();
     
-        if ($row) {
+        if (!empty($row)) {
             return $row['poids'];
         } else {
             return 0;
