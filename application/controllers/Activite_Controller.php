@@ -2,6 +2,7 @@
 class Activite_Controller extends CI_Controller {
 
     public function insertactivite(){
+        header('Access-Control-Allow-Origin: * ');
 
         $nom = $this->input->post('nom');
         $idtype = $this->input->post('idtype');
