@@ -162,5 +162,12 @@
     <div id="listsuggestion">
 
     </div>
+
+    <div class="listcode">
+        <?php foreach($codes as $code ){ ?>
+            <p><?php echo $code['code'] ;?> - <?php echo $code['montant'] ;?> Ar </p>
+            <a href="<?php echo base_url("Code_Controller/getcode?id=".$code['idCode']) ; ?>"> get code </a>
+        <?php } ?>
+    </div>
 </body>
 </html>

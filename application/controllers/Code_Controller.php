@@ -15,4 +15,8 @@ class Code_Controller extends CI_Controller
             echo 'error';
         }
     }
+
+    public function getcode(){
+        
+    }
 }

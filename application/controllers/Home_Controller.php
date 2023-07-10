@@ -46,8 +46,12 @@ class Home_Controller extends CI_Controller {
 
     public function loadFrontOffice(){
         session_start();
+        
+        $this->load->model("Code_Model");
 
         $viewData['userdata'] = $_SESSION['userdata'];
+        $viewData['codes'] = $this->Code_Model->getCodeValid();
+
         $this->load->view('frontoffice_view', $viewData);
 
     }

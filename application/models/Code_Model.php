@@ -32,6 +32,7 @@ class Code_Model extends CI_Model
             return array();
         }
     }  
+
     public function checkCode($code, $idProfile){
         $sql = "SELECT code, isUsed, montant FROM code WHERE code = '$code'";
         $query = $this->db->query($sql);
@@ -56,13 +57,14 @@ class Code_Model extends CI_Model
     {
         $sql= "select * from code where isUsed = 0";
         $query = $this->db->query($sql);
-        $result = array();
+        $result = $query->result_array();
 
-        foreach($query->result_array() as $row)
-        {
-            $result[]=$row;
+        if(empty($result)){
+            return array();
         }
+
         return $result;
     }
+
 }
 ?>
