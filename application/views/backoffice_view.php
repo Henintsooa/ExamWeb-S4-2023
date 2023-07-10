@@ -28,7 +28,7 @@
 
                         if(xhr.status === 200){
                             if(xhr.responseText === 'success'){
-                                window.location.href = '<?php echo base_url("Home_Controller") ; ?>';
+                                window.location.href = '<?php echo base_url("Home_Controller/loadbackoffice") ; ?>';
                             }else{
                                 errorContainer.textContent = 'Donnes Invalides';
                             }
@@ -56,7 +56,7 @@
                         if(xhr.status === 200){
                             console.log(xhr.responseText);
                             if(xhr.responseText === 'success'){
-                                window.location.href = '<?php echo base_url("Home_Controller") ; ?>';
+                                window.location.href = '<?php echo base_url("Home_Controller/loadbackoffice") ; ?>';
                             }else{
                                 errorContainerRegime.textContent = 'Donnes Invalides';
                             }
@@ -126,8 +126,9 @@
             <label for="idregime">Nom du regime:</label>
             <select name="idregime" id="idregime">
                 <option value="99999">nouveau regime</option>
+                <?php var_dump($regimes); ?>
                 <?php foreach ($regimes as $regime) { ?>
-                    <option value="<?php echo $regime['idRegime'] ; ?>-<?php echo $regime['nom'] ; ?>"> <?php echo $regime['nom'] ; ?> </option>
+                    <option value="<?php echo $regime['idRegime'] ; ?>/<?php echo $regime['nom'] ; ?>"> <?php echo $regime['nom'] ; ?> </option>
                 <?php } ?>
             </select>
             <br><br>
@@ -138,8 +139,8 @@
             <label for="finActivite">Durre Regime (jour) :</label>
             <input type="number" step="1" name="finActivite" id="finActivite" required min=0><br><br>
 
-            <label for="nom-regime">Nom du regime:</label>
-            <input type="text" name="nom-regime" id="nom-regime" required><br><br>
+            <label for="nomregime">Nom du regime:</label>
+            <input type="text" name="nomregime" id="nomregime"><br><br>
 
             <input type="submit" value="Ajouter/Creer regime">
         </form>

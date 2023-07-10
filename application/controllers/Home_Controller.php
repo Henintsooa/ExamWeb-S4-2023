@@ -29,9 +29,11 @@ class Home_Controller extends CI_Controller {
         // get all activity
         $this->load->model('TypeActivite_Model');
         $this->load->model('Activite_Model');
+        $this->load->model('Regime_Model');
 
         $viewData['typeActivites'] = $this->TypeActivite_Model->getTypeActivites(); 
         $viewData['activites'] = $this->Activite_Model->getActivites();
+        $viewData['regimes'] = $this->Regime_Model->getRegimes();
 
         $this->load->view('backoffice_view', $viewData);
     }

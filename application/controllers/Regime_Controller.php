@@ -8,7 +8,7 @@ class Regime_Controller extends CI_Controller {
         $idActivite = $this->input->post('idactivite');
         $jourActivite = $this->input->post('jourActivite');
         $finActivite = $this->input->post('finActivite');
-        $nom = $this->input->post('nom-regime');
+        $nom = $this->input->post('nomregime');
 
         $this->load->model('Regime_Model');
 
@@ -17,15 +17,15 @@ class Regime_Controller extends CI_Controller {
             $idRegime = $id + 1 ; 
             var_dump($idRegime);
         }else{
-            $regime = $idRegime ;
-            $idRegime = explode("-",$regime)[0];
-            $nom = explode("-",$regime)[1]; 
+            $regime = explode("/",$idRegime) ;
+            $idRegime = $regime[0];
+            $nom = $regime[1]; 
         }
 
         $result = $this->Regime_Model-> createRegime($idRegime, $idActivite, $jourActivite, $finActivite, $nom);
 
         if($result){
-            echo 'success';
+            echo 'success ' ;
         }else{
             echo 'error';
         }

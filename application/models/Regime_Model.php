@@ -2,6 +2,7 @@
 class Regime_Model extends CI_Model
 {
     public function createRegime($idRegime, $idActivite, $jourActivite, $finActivite,$nom){
+        if($jourActivite > $finActivite || $nom == ""){ return false ; }
         $data = array(
             'idRegime' => $idRegime,
             'idActivite' => $idActivite,
