@@ -26,6 +26,24 @@ class Code_Model extends CI_Model
             return array();
         }
     }  
+    public function checkCode($code, $idProfile){
+        $sql = "SELECT code, isUsed, montant FROM code WHERE code = '$code'";
+        $query = $this->db->query($sql);
+        $result = $query->row();
     
+        if($result && $result->isUsed == 0){
+            $montant = $result->montant;
+            $this->ajoutsolde($montant,$idProfile);
+        }else{
+            return "Ce code est invalide";
+        }
+    }
+    
+    
+    public function ajoutSolde($somme,$idProfile)
+    {
+        $sql = "SELECT (montant+$somme) as solde FROM wallet where idProfile=$idProfile";
+        $this->db->query($sql);
+    }
 }
 ?>
