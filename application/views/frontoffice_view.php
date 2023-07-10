@@ -53,12 +53,12 @@
 
                         if(xhr.status === 200){
                             if(xhr.responseText === 'success'){
-                                window.location.href = '<?php echo base_url("Home_Controller/loadobjectifinterface") ; ?>';
+                                window.location.href = '<?php echo base_url("Home_Controller/loadfrontoffice") ; ?>';
                             }else{
-                                errorContainerobjectif.textContent = 'Donnes Invalides';
+                                errorContainerUserdata.textContent = 'Donnes Invalides';
                             }
                         }else{
-                            errorContainerobjectif.textCont1ent = 'Erreur lors de la requete';
+                            errorContainerUserdata.textContent = 'Erreur lors de la requete';
                         }
                     }
                     console.log(xhr.readyState);
@@ -93,6 +93,10 @@
 
             <label for="poids">poids :</label>
             <input type="number" step="1" name="poids" id="poids" required min=0><br><br>
+
+            <label for="date">Sélectionnez une date :</label>
+            <input type="date" id="date" name="date" required>
+            <br><br>
 
             <input type="submit" value="inserer data">
         </form> 
