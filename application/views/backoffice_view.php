@@ -9,7 +9,10 @@
     document.addEventListener(
         'DOMContentLoaded', function(){
             var activiteForm = document.getElementById('activiteForm');
+            var regimeForm = document.getElementById('activiteForm');
             var errorContainer = document.getElementById('errorContainer');
+            var errorContainerRegime = document.getElementById('errorContainer');
+            
 
             // activite request
             activiteForm.addEventListener('submit', function(e){
@@ -31,6 +34,33 @@
                             }
                         }else{
                             errorContainer.textCont1ent = 'Erreur lors de la requete';
+                        }
+                    }
+                    console.log(xhr.readyState);
+                }
+                xhr.send(formData);
+            });
+
+            // regime request
+            regimeForm.addEventListener('submit', function(e){
+                e.preventDefault();
+
+                var formData = new FormData(regimeForm);
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", '<?php echo base_url("Regime_Controller/insertregime") ; ?>' , true);
+
+                xhr.onreadystatechange = function() {
+                    if(xhr.readyState === 4){
+                        console.log("HI IM HERE");
+
+                        if(xhr.status === 200){
+                            if(xhr.responseText === 'success'){
+                                window.location.href = '<?php echo base_url("Home_Controller") ; ?>';
+                            }else{
+                                errorContainerRegime.textContent = 'Donnes Invalides';
+                            }
+                        }else{
+                            errorContainerRegime.textCont1ent = 'Erreur lors de la requete';
                         }
                     }
                     console.log(xhr.readyState);
@@ -68,7 +98,7 @@
             <input type="number" step="0.01" name="apport" id="apport" required><br><br>
 
             <label for="frequence">Fréquence:</label>
-            <input type="number" step="1" name="frequence" id="frequence" required><br><br>
+            <input type="number" step="1" name="frequence" id="frequence" required min=0><br><br>
 
             <label for="prix">Prix:</label>
             <input type="number" step="0.01" name="prix" id="prix" required><br><br>
@@ -86,23 +116,29 @@
             <label for="idactivite">Nom de l'activité:</label>
             <select name="idactivite" id="idactivite">
                 <?php foreach ($activites as $activite) { ?>
-                    <option value="<?php echo $type['idActivite'] ; ?>"> <?php echo $type['nom'] ; ?> </option>
+                    <option value="<?php echo $activite['idActivite'] ; ?>"> <?php echo $activite['nom'] ; ?> </option>
                 <?php } ?>
             </select>
             <br><br>
 
-            <label for="apport">Apport:</label>
-            <input type="number" step="0.01" name="apport" id="apport" required><br><br>
+            <label for="idregime">Nom du regime:</label>
+            <select name="idregime" id="idregime">
+                <option value="99999">nouveau regime</option>
+                <?php foreach ($regimes as $regime) { ?>
+                    <option value="<?php echo $regime['idRegime'] ; ?>"> <?php echo $regime['nom'] ; ?> </option>
+                <?php } ?>
+            </select>
+            <br><br>
 
-            <label for="frequence">Fréquence:</label>
-            <input type="number" step="1" name="frequence" id="frequence" required><br><br>
+            <label for="jourActivite">Jour d'Activite :</label>
+            <input type="number" step="1" name="jourActivite" id="jourActivite" required min=0><br><br>
 
-            <label for="prix">Prix:</label>
-            <input type="number" step="0.01" name="prix" id="prix" required><br><br>
+            <label for="finActivite">Durre Regime (jour) :</label>
+            <input type="number" step="1" name="finActivite" id="finActivite" required min=0><br><br>
 
-            <input type="submit" value="Créer activité">
+            <input type="submit" value="Ajouter/Creer regime">
         </form>
-        <p id="errorContainer">  </p>
+        <p id="errorContainerRegime"></p>
     </div>
 
 </body>
