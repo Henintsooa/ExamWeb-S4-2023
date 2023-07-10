@@ -76,3 +76,15 @@ CREATE TABLE PendingWallet(
 
 INSERT INTO TypeActivite(nom) VALUES ('Sport');
 INSERT INTO TypeActivite(nom) VALUES ('Repas');
+
+create or replace view reduirePoids as SELECT idRegime, SUM(apport) AS resultat
+FROM activite
+JOIN regime ON activite.idActivite = regime.idActivite
+GROUP BY idRegime
+HAVING resultat < 0;
+
+create or replace view augmenterPoids as SELECT idRegime, SUM(apport) AS resultat
+FROM activite
+JOIN regime ON activite.idActivite = regime.idActivite
+GROUP BY idRegime
+HAVING resultat > 0;
