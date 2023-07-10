@@ -28,8 +28,10 @@ class Home_Controller extends CI_Controller {
     public function loadBackOffice(){
         // get all activity
         $this->load->model('TypeActivite_Model');
+        $this->load->model('Activite_Model');
 
         $viewData['typeActivites'] = $this->TypeActivite_Model->getTypeActivites(); 
+        $viewData['activites'] = $this->Activite_Model->getActivites();
 
         $this->load->view('backoffice_view', $viewData);
     }

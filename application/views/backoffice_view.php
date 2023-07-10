@@ -9,9 +9,9 @@
     document.addEventListener(
         'DOMContentLoaded', function(){
             var activiteForm = document.getElementById('activiteForm');
-            var regimeForm = document.getElementById('activiteForm');
+            var regimeForm = document.getElementById('regimeForm');
             var errorContainer = document.getElementById('errorContainer');
-            var errorContainerRegime = document.getElementById('errorContainer');
+            var errorContainerRegime = document.getElementById('errorContainerRegime');
             
 
             // activite request
@@ -51,9 +51,10 @@
 
                 xhr.onreadystatechange = function() {
                     if(xhr.readyState === 4){
-                        console.log("HI IM HERE");
+                        console.log("HI IM HERE HAHAHA");
 
                         if(xhr.status === 200){
+                            console.log(xhr.responseText);
                             if(xhr.responseText === 'success'){
                                 window.location.href = '<?php echo base_url("Home_Controller") ; ?>';
                             }else{
@@ -111,6 +112,7 @@
     <!-- form regime -->
     <div class="regime_form">
         <h1>INSERTION REGIME</h1>
+        <?php var_dump($activites); ?>
         <form method="POST" id="regimeForm" >
 
             <label for="idactivite">Nom de l'activité:</label>
@@ -125,7 +127,7 @@
             <select name="idregime" id="idregime">
                 <option value="99999">nouveau regime</option>
                 <?php foreach ($regimes as $regime) { ?>
-                    <option value="<?php echo $regime['idRegime'] ; ?>"> <?php echo $regime['nom'] ; ?> </option>
+                    <option value="<?php echo $regime['idRegime'] ; ?>-<?php echo $regime['nom'] ; ?>"> <?php echo $regime['nom'] ; ?> </option>
                 <?php } ?>
             </select>
             <br><br>
@@ -135,6 +137,9 @@
 
             <label for="finActivite">Durre Regime (jour) :</label>
             <input type="number" step="1" name="finActivite" id="finActivite" required min=0><br><br>
+
+            <label for="nom-regime">Nom du regime:</label>
+            <input type="text" name="nom-regime" id="nom-regime" required><br><br>
 
             <input type="submit" value="Ajouter/Creer regime">
         </form>

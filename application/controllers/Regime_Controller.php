@@ -1,27 +1,39 @@
 <?php
-class Activite_Controller extends CI_Controller {
+class Regime_Controller extends CI_Controller {
 
     public function insertregime(){
+        header('Access-Control-Allow-Origin: * ');
 
-        $nom = $this->input->post('nom');
-        $idtype = $this->input->post('idtype');
-        $apport = $this->input->post('apport');
-        $frequence = $this->input->post('frequence');
-        $prix = $this->input->post('prix');
+        $idRegime = $this->input->post('idregime');
+        $idActivite = $this->input->post('idactivite');
+        $jourActivite = $this->input->post('jourActivite');
+        $finActivite = $this->input->post('finActivite');
+        $nom = $this->input->post('nom-regime');
 
-        if( $idtype == 1 ){
-            $prix = 0;
-        }
+        $this->load->model('Regime_Model');
+        
+        var_dump($idRegime);
+        $idRegime = 99999;
+        var_dump($idRegime);
 
-        $this->load->model('Activite_Model');
-
-        $result = $this->Activite_Model-> createActivite($nom, $idtype, $apport, $frequence, $prix);
-
-        if($result){
-            echo 'success';
+        if($idRegime == 99999){ 
+            $id = $this->Regime_Model->getLastRegime() ; 
+            $idRegime = $id + 1 ; 
+            var_dump($idRegime);
         }else{
-            echo 'error';
+            $regime = $idRegime ;
+            $idRegime = explode($regime,"-")[0];
+            $nom = explode($regime,"-")[1];
+            
         }
+
+        // $result = $this->Regime_Model-> createRegime($idRegime, $idActivite, $jourActivite, $finActivite, $nom);
+
+        // if($result){
+        //     echo 'success';
+        // }else{
+        //     echo 'error';
+        // }
     }
     
 }
