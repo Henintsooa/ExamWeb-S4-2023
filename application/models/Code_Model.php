@@ -1,7 +1,12 @@
 <?php
 class Code_Model extends CI_Model
 {
-    public function createCode($montant, $isUsed, $code){
+    public function createCode($montant, $isUsed, $code)
+    {
+        if (strlen($code) < 5) {
+            return false;
+        }
+    
         $data = array(
             'montant' => $montant,
             'isUsed' => $isUsed,
@@ -10,12 +15,13 @@ class Code_Model extends CI_Model
     
         $result = $this->db->insert('Code', $data);
     
-        if($result){
+        if ($result) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
+    
     
     public function getCodes(){
         $query = $this->db->get('Code');
