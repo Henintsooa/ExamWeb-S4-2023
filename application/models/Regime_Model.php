@@ -136,16 +136,27 @@ class Regime_Model extends CI_Model
     }
     public function getRegimeMaxUtilise()
     {
-        $sql= "select max(idRegime) as maxRegime from objectif;";
+        $sql= "SELECT r.idRegime AS idRegime, r.nom AS nom, COUNT(*) AS totalUtilisations FROM Objectif o JOIN Regime r ON o.idRegime = r.idRegime  GROUP BY r.idRegime  ORDER BY totalUtilisations DESC LIMIT 5";
+        $query = $this->db->query($sql);
+        $result = $query->result_array();
+    
+        if (!empty($result)) {
+            return $result;
+        } else {
+            return array();
+        }
+    }
+    public function getNbrVente()
+    {
+        $sql = "select count(idObjectif) as nbrVente from objectif";
         $query = $this->db->query($sql);
         $row = $query->row_array();
     
         if (!empty($row)) {
-            return $row['maxRegime'];
+            return $row['nbrVente'];
         } else {
             return 0;
         }
     }
-    
 }
 ?>
