@@ -41,7 +41,28 @@
 
 </script>
 <body>
+
+    <!-- form userdata -->    
+    <div class="userDataForm">
+        <h1>Insertion userdata</h1>
+        <form method="POST" id="objectifForm" >
+
+            <select name="sexe" id="sexe">
+                <option value="0">homme</option>
+                <option value="1">femme</option>
+            </select>
+
+            <label for="taille">taille :</label>
+            <input type="number" step="1" name="taille" id="taille" required min=0><br><br>
+
+            <label for="poids">poids :</label>
+            <input type="number" step="1" name="poids" id="poids" required min=0><br><br>
+
+            <input type="submit" value="Suggerer regimes">
+        </form> 
+        <p id="errorContainerObjectif"></p>
     </div>
+    
     <!-- form regime -->
     <div class="objectif_form">
         <h1>INSERTION Objectifs</h1>
