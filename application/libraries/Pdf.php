@@ -27,24 +27,24 @@ class PDF extends FPDF
     function Header()
     {
         // Logo
-        $this->SetFont('Times','B',10);
+        $this->SetFont('Times', 'B', 10);
         $this->SetTextColor(196, 201, 199);
         // Décalage à droite
         $this->Cell(130);
         // Titre
-        $this->Cell(30, 10, '', 0, 0, 'C');
-        $this->Ln(5);
-        // Police Times gras 15
-        $this->SetFont('Times','B',13);
+        $this->SetFont('Times', 'B', 13);
         $this->SetTextColor(34, 66, 124);
-        // Décalage à droite
-        $this->Cell(80);
-        // Titre
-        $this->Cell(30, 40, $this->title, 0, 0, 'C');
-        
+        $this->Cell(30, 10, $this->title, 0, 0, 'C');
+        $this->Ln(5);
         // Saut de ligne
-        $this->Ln(27);
+        $this->Ln(10);
+        
+        // Titre de la page
+        $this->SetFont('Times', 'B', 14);
+        $this->Cell(0, 10, $this->title, 0, 1, 'C');
+        $this->Ln(10);
     }
+    
 
     // Pied de page
     function Footer()

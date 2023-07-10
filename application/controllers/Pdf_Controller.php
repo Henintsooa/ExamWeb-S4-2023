@@ -20,8 +20,6 @@ class Pdf_Controller extends CI_Controller {
         $title = 'Regimes et activites sportives';
         $pdf->setTitle($title);
 
-        // Récupérer les données du modèle
-        $id = 1; // Remplacez par l'id approprié
         // Charger le modèle Regime_Model
         $this->load->model('Regime_Model');
         $data = $this->Regime_Model->getActivitesRegimes(1);
