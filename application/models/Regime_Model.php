@@ -2,6 +2,7 @@
 class Regime_Model extends CI_Model
 {
     public function createRegime($idRegime, $idActivite, $jourActivite, $finActivite,$nom){
+        if($jourActivite > $finActivite || $nom == "" ){return false;}
         $data = array(
             'idRegime' => $idRegime,
             'idActivite' => $idActivite,
@@ -29,6 +30,7 @@ class Regime_Model extends CI_Model
             return array();
         }
     }
+
     public function getSuggestionRegime()
     {
 
@@ -52,7 +54,7 @@ class Regime_Model extends CI_Model
         $query = $this->db->query($sql);
         $row = $query->row_array();
     
-        if ($row) {
+        if (!empty($row)) {
             return $row['lastIdRegime'];
         } else {
             return 0;
