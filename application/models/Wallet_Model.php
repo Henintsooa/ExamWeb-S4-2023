@@ -25,6 +25,23 @@ class Wallet_Model extends CI_Model
             return array();
         }
     }
-    
+
+    public function checkWallet($somme,$idProfile){
+        $sql = "SELECT montant FROM wallet where idProfile=$idProfile";
+        $query = $this->db->query($sql);
+        $result = $query->row();
+
+            if ($result >= $somme) {
+                $this->transaction($somme,$idProfile);
+            } else {
+                echo "Votre montant est insuffisant";
+            }
+    }
+    public function transaction($somme,$idProfile)
+    {
+        $sql = "SELECT (montant-$somme) as solde FROM wallet where idProfile=$idProfile";
+        $this->db->query($sql);
+    }
+
 }
 ?>

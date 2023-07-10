@@ -18,7 +18,6 @@ class UserData_Model extends CI_Model
             return false;
         }
     }
-    
     public function getUserData($idProfile){
         $query = $this->db->get_where('UserData', array('idProfile' => $idProfile));
     
