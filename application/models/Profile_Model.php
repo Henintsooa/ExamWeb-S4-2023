@@ -75,5 +75,10 @@ class Profile_Model extends CI_Model
             return false;
         }
     }
+
+    public function deconnexion ()
+    {
+        session_destroy();
+    }
 }
 ?>
