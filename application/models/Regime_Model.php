@@ -1,12 +1,24 @@
 <?php
 class Regime_Model extends CI_Model
 {
-    public function createRegime($idRegime, $idActivite, $jourActivite, $finActivite,$nom){
-        if($jourActivite > $finActivite || $nom == ""){ return false ; }
-        if (!empty($this->getRegimesById($idRegime))) 
-        {
-            $this->updateRegimeFinActivite($idRegime, $idActivite, $finActivite);
-        }else{
+    public function createRegime($idRegime, $idActivite, $jourActivite, $finActivite, $nom)
+    {
+        if ($jourActivite > $finActivite || $nom == "") {
+            return false;
+        }
+    
+        $regimes = $this->getRegimesById($idRegime);
+        if (!empty($regimes)) {
+           
+            $lastRegime = end($regimes);  // Récupérer le dernier régime
+            $lastRegimeId = $lastRegime['idRegime'];
+            $data = array(
+                'finActivite' => $finActivite
+            );
+            $this->db->where('idRegime', $lastRegimeId);
+            $this->db->update('Regime', $data);
+        } else {
+         
             $data = array(
                 'idRegime' => $idRegime,
                 'idActivite' => $idActivite,
@@ -14,16 +26,15 @@ class Regime_Model extends CI_Model
                 'finActivite' => $finActivite,
                 'nom' => $nom
             );
-        
             $result = $this->db->insert('Regime', $data);
-        
-            if($result){
+            if ($result) {
                 return true;
-            }else{
+            } else {
                 return false;
-            }                    
+            }
         }
     }
+    
     
     public function getRegimes()
     {
