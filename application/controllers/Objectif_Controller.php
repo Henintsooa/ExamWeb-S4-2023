@@ -3,7 +3,20 @@ class Objectif_Controller extends CI_Controller {
 
     public function insertobjectif(){
         header('Access-Control-Allow-Origin: * ');
-        
+        session_start();
+
+        $this->load->model("Objectif_Model");
+
+        $idRegime = $this->input->get('idRegime');
+        $apport = $this->input->get('apport');
+        $montant = $this->input->get('montant');
+        $repetition = $this->input->get('repetition');
+
+        $result = $this->Objectif_Model->createObjectif($_SESSION['userdata']['idProfile'],$idRegime, $apport, $montant, $repetition);
+        if($result){
+            
+        }
+
     }
 
     public function getsuggestions(){

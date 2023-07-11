@@ -2,8 +2,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Objectif_model extends CI_Model {
-    public function createObjectif($idRegime, $poids, $montant, $repetition){
+    public function createObjectif($idProfile,$idRegime, $poids, $montant, $repetition){
         $data = array(
+            'idProfile' => $idProfile,
             'idRegime' => $idRegime,
             'poids' => $poids,
             'montant' => $montant,

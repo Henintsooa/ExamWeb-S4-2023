@@ -75,7 +75,7 @@
                                         html += "<p> prix: " + prix + " Ar </p><br>";
                                         html += "</div>";
                                     }
-                                    html += "<a href='<?php echo base_url("Objectif_Controller/getsuggestions?idRegime=") ; ?>"+idRegime+"&apport="+resultat+"&montant="+prixTotal+"&repetition="+repetition+"'>acheter</a>";
+                                    html += "<a href='<?php echo base_url("Objectif_Controller/insertobjectif?idRegime=") ; ?>"+idRegime+"&apport="+resultat+"&montant="+prixTotal+"&repetition="+repetition+"'>acheter</a>";
                                     html += "</div>";
                                 }
 
