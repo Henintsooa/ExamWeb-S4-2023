@@ -46,12 +46,13 @@
                                     var prixTotal = suggestions[i].prixTotal;
                                     var durree = suggestions[i].durree;
 
-                                    html += "idRegime: " + idRegime + "<br>";
-                                    html += "repetition: " + repetition + "fois <br>";
-                                    html += "resultat: " + resultat + "kilos <br>";
-                                    html += "prix Total: " + prixTotal + "Ar <br>";
-                                    html += "durree Total: " + durree + "jours <br>";
-                                    html += "Activités:<br>";
+                                    html += "<div class='sugg' >";
+                                    html += "<h6><p class='value'> Regime " + idRegime + "</p></h6>";
+                                    html += "<h6>repetition: <p class='value'>" + repetition + " fois </p></h6>";
+                                    html += "<h6>resultat: <p class='value'>" + resultat + " kilos </p></h6>";
+                                    html += "<h6>prix Total: <p class='value'>" + prixTotal + " Ar </p> Ar</h6>";
+                                    html += "<h6>durree Total: <p class='value'>" + durree + " jours </p></h6>";
+                                    html += "<h6>Activités:<h6>";
 
                                     for (var j = 0; j < activites.length; j++) {
                                         var apport = activites[j].apport;
@@ -61,16 +62,21 @@
                                         var nom = activites[j].nom;
                                         var prix = activites[j].prix;
 
-                                        html += "- Activité " + (j + 1) + "<br>";
-                                        html += "   apport: " + apport + "<br>";
-                                        html += "   fréquence: " + frequence + "<br>";
-                                        html += "   idActivite: " + idActivite + "<br>";
-                                        html += "   idType: " + idType + "<br>";
-                                        html += "   nom: " + nom + "<br>";
-                                        html += "   prix: " + prix + "<br>";
+                                        html += "<div class='title' > - Activité " + (j + 1) + "</div>";
+                                        html += "<div class='activite' >";
+                                        if(idType == 1){
+                                            html += "<p> sport </p><br>";
+                                        }else{
+                                            html += "<p> repas </p><br>";
+                                        }
+                                        html += "<p> apport: " + apport + "kilos </p><br>";
+                                        html += "<p> fréquence: " + frequence + " fois </p><br>";
+                                        html += "<p> nom: " + nom + " </p><br>";
+                                        html += "<p> prix: " + prix + " Ar </p><br>";
+                                        html += "</div>";
                                     }
-
-                                    html += "<br>";
+                                    html += "<a href='<?php echo base_url("Objectif_Controller/getsuggestions?idRegime=") ; ?>"+idRegime+"&apport="+resultat+"&montant="+prixTotal+"&repetition="+repetition+"'>acheter</a>";
+                                    html += "</div>";
                                 }
 
                                 suggestionsDiv.innerHTML = html;
@@ -124,11 +130,6 @@
                     <div class="col-md-12">
                         <div class="form h-100">
                             <h3>Bienvenu(e), <?php echo $userdata['username'] ;?> </h3>
-                            <!-- <p>
-                                <!-- <?php
-                                    var_dump($userdata);
-                                ?>
-                            </p> -->
 
                             <!-- form userdata -->    
                             <div class="userDataForm">
@@ -186,7 +187,7 @@
                                 
                                     <div class="row">
                                         <div class="col-md-12 form-group">
-                                        <input type="submit" value="Suggerer regimes" class="btn btn-primary rounded-0 py-2 px-4>
+                                        <input type="submit" value="Suggerer regimes" class="btn btn-primary rounded-0 py-2 px-4">
                                         </div>
                                     </div>
                                    

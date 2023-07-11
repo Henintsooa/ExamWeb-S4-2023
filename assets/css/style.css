@@ -152,3 +152,46 @@ label.error {
   font-weight: bold;
   font-size: 12px;
   color: #000; }
+
+.sugg {
+  display:flex;
+  flex-wrap:wrap;
+  background-color: #d3f5f5;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.sugg h6{
+  display:flex;
+  flex-direction: row;
+  padding: 5px;
+  margin: 0;
+  color: #0c263d;
+  font-weight: 600;
+}
+
+.sugg .value {
+  color: #46abcb;
+  margin: 0;
+  padding-left: 5px;
+  padding-right: 5px;
+  font-weight: bolder;
+}
+
+.sugg .activite{
+  opacity: 60%;
+}
+
+.sugg .activite p {
+  margin: 0;
+}
+
+.sugg a{
+  height: fit-content;
+  width: fit-content;
+  background-color: #ec407a;
+  padding: 15px;
+  border-radius: 8px;
+  color: aliceblue;
+}
+
