@@ -73,7 +73,7 @@
 <body>
     <div class="menu">
         <ul>
-            <li><a href=""> statistiques </a></li>
+            <li><a href="<?php echo base_url("Stat_Controller/index") ; ?>"> statistiques </a></li>
             <li> <a href="<?php echo base_url("Home_Controller/loadbackoffice") ; ?>"> regime </a> </li>
             <li> <a href="<?php echo base_url("Home_Controller/loadCodeInterface") ; ?>"> code </a> </li>
         </ul>
