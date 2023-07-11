@@ -58,5 +58,10 @@ class Home_Controller extends CI_Controller {
         $this->load->view('frontoffice_view', $viewData);
 
     }
-
+    public function deconnexion()
+	{
+        $this->load->model("Profile_Model");
+        $this->Profile_Model->deconnexion();
+        redirect('welcome');
+	}	
 }
