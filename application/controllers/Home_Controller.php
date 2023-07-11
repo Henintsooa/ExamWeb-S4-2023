@@ -40,8 +40,11 @@ class Home_Controller extends CI_Controller {
 
     public function loadCodeInterface(){
 
-        $viewData['data'] = array();
+        $this->load->model('PendingWallet_Model');
+        $viewData['pendings'] = $this->PendingWallet_Model->getPendingWalletDetails();
+
         $this->load->view('code_view', $viewData);
+
     }
 
     public function loadFrontOffice(){
@@ -50,7 +53,7 @@ class Home_Controller extends CI_Controller {
         $this->load->model("Code_Model");
 
         $viewData['userdata'] = $_SESSION['userdata'];
-        $viewData['codes'] = $this->Code_Model->getCodeValid();
+        $viewData['codes'] = $this->Code_Model->getCodeValid($_SESSION['userdata']['idProfile']);
 
         $this->load->view('frontoffice_view', $viewData);
 

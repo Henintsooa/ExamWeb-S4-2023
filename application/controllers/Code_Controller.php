@@ -17,6 +17,43 @@ class Code_Controller extends CI_Controller
     }
 
     public function getcode(){
-        
+        session_start();
+
+        $idCode = $this->input->get('id');
+
+        $this->load->model('PendingWallet_Model');
+
+        $result = $this->PendingWallet_Model->createPendingWallet($_SESSION['userdata']['idProfile'], $idCode, 0);
+
+        if($result){
+            redirect("Home_Controller/loadfrontoffice");
+        }
+    }
+
+    public function accept(){
+        $idCode = $this->input->get('idCode');
+        $idProfile = $this->input->get('idProfile');
+
+        $this->load->model('PendingWallet_Model');
+
+        $result_1 = $this->PendingWallet_Model->updatePendingWalletStatus($idProfile, $idCode, 1);
+        $result_2 = $this->PendingWallet_Model->updatePendingWalletStatus('', $idCode, 1);
+
+        if($result_1 && $result_2){
+            redirect("Home_Controller/loadCodeInterface");
+        }
+    }
+
+    public function refuse(){
+        $idCode = $this->input->get('idCode');
+        $idProfile = $this->input->get('idProfile');
+
+        $this->load->model('PendingWallet_Model');
+
+        $result_1 = $this->PendingWallet_Model->updatePendingWalletStatus($idProfile, $idCode, 2);
+
+        if($result_1){
+            redirect("Home_Controller/loadCodeInterface");
+        }
     }
 }

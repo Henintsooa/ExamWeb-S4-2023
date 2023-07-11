@@ -49,6 +49,16 @@ class Profile_Model extends CI_Model
         }
     }
 
+    public function getProfileByID($idProfile){
+        $query = $this->db->get_where('Profile',array('idProfile'=>$idProfile));
+
+        if($query->num_rows() === 1){
+            return $query->result_array()[0];
+        }else{
+            return array();
+        }
+    }
+
     public function updateNomProfile($idProfile, $username){
         $data = array(
             'username' => $username
