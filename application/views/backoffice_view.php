@@ -282,21 +282,32 @@
                                         </div>
 
                                         <div class="row">
-                                          <div class="col-md-6 form-group mb-3">
+                                          <div class="col-md-4 form-group mb-3">
                                             <label class="col-form-label" for="apport">Apport</label>
                                             <input class="form-control" type="number" step="0.01" name="apport" id="apport" required>
                                           </div>
                                         </div>
 
-                                        
+                                        <div class="row">
+                                          <div class="col-md-4 form-group mb-3">
+                                            <label class="col-form-label" for="frequence">Fréquence</label>
+                                            <input class="form-control" type="number" step="1" name="frequence" id="frequence" required min=0>
+                                          </div>
+                                        </div>
 
-                                        <label for="frequence">Fréquence:</label>
-                                        <input type="number" step="1" name="frequence" id="frequence" required min=0><br><br>
+                                        <div class="row">
+                                          <div class="col-md-4 form-group mb-3">
+                                          <label for="prix">Prix</label>
+                                            <input class="form-control" type="number" step="0.01" name="prix" id="prix" required>
+                                          </div>
+                                        </div>
 
-                                        <label for="prix">Prix:</label>
-                                        <input type="number" step="0.01" name="prix" id="prix" required><br><br>
+                                        <div class="row">
+                                          <div class="col-md-12 form-group">
+                                          <input type="submit" value="Créer activité" class="btn btn-primary rounded-0 py-2 px-4"> 
+                                          </div>
+                                        </div>
 
-                                        <input type="submit" value="Créer activité">
                                     </form>
                                     <p id="errorContainer">  </p>
                                 </div>
