@@ -267,13 +267,13 @@
                                           <div class="row">
                                               <div class="col-md-6 form-group mb-3">
                                                 <label for="nom" class="col-form-label">Nom de l'activité</label>
-                                                <input type="text" class="form-control" name="nom" id="nom" required>
+                                                <input type="text" name="nom" id="nom" required>
                                               </div>
                                           </div>
                                         <div class="row">
                                           <div class="col-md-6 form-group mb-3">
                                             <label class="col-form-label" for="idtype">Type de l'activité</label>
-                                              <select class="form-control" name="idtype" id="idtype">
+                                              <select name="idtype" id="idtype">
                                                   <?php foreach ($typeActivites as $type) { ?>
                                                       <option value="<?php echo $type['idType'] ; ?>"> <?php echo $type['nom'] ; ?> </option>
                                                   <?php } ?>
@@ -284,21 +284,21 @@
                                         <div class="row">
                                           <div class="col-md-4 form-group mb-3">
                                             <label class="col-form-label" for="apport">Apport</label>
-                                            <input class="form-control" type="number" step="0.01" name="apport" id="apport" required>
+                                            <input  type="number" step="0.01" name="apport" id="apport" required>
                                           </div>
                                         </div>
 
                                         <div class="row">
                                           <div class="col-md-4 form-group mb-3">
                                             <label class="col-form-label" for="frequence">Fréquence</label>
-                                            <input class="form-control" type="number" step="1" name="frequence" id="frequence" required min=0>
+                                            <input  type="number" step="1" name="frequence" id="frequence" required min=0>
                                           </div>
                                         </div>
 
                                         <div class="row">
                                           <div class="col-md-4 form-group mb-3">
                                           <label for="prix">Prix</label>
-                                            <input class="form-control" type="number" step="0.01" name="prix" id="prix" required>
+                                            <input type="number" step="0.01" name="prix" id="prix" required>
                                           </div>
                                         </div>
 
@@ -317,8 +317,8 @@
                                         <div class="row">
                                           <div class="col-md-4 form-group mb-3">
                                             <label class="col-form-label" for="idactivite">Nom de l'activité</label>
-                                            <select class="form-control" name="idactivite" id="idactivite">
-                                                <?php foreach ($activites as $activite) { ?>
+                                            <select name="idactivite" id="idactivite">
+                                            <?php foreach ($activites as $activite) { ?>
                                                     <option value="<?php echo $activite['idActivite'] ; ?>"> <?php echo $activite['nom'] ; ?> </option>
                                                 <?php } ?>
                                             </select>
@@ -328,7 +328,7 @@
                                         <div class="row">
                                           <div class="col-md-4 form-group mb-3">
                                             <label class="col-form-label" for="idregime">Nom du regime</label>
-                                            <select class="form-control" name="idregime" id="idregime">
+                                            <select name="idregime" id="idregime">
                                                 <option value="99999">nouveau regime</option>
                                                 <?php foreach ($regimes as $regime) { ?>
                                                     <option value="<?php echo $regime['idRegime'] ; ?>/<?php echo $regime['nom'] ; ?>"> <?php echo $regime['nom'] ; ?> </option>
@@ -340,27 +340,27 @@
                                         <div class="row">
                                           <div class="col-md-4 form-group mb-3">
                                             <label class="col-form-label" for="jourActivite">Jour d'Activite </label>
-                                            <input class="form-control" type="number" step="1" name="jourActivite" id="jourActivite" required min=0>
+                                            <input  type="number" step="1" name="jourActivite" id="jourActivite" required min=0>
                                           </div>
                                         </div>
                                           
                                         <div class="row">
                                           <div class="col-md-4 form-group mb-3">
                                             <label class="col-form-label" for="finActivite">Durée Regime (jour)</label>
-                                            <input class="form-control" type="number" step="1" name="finActivite" id="finActivite" required min=0>
+                                            <input type="number" step="1" name="finActivite" id="finActivite" required min=0>
                                           </div>
                                         </div>
 
                                         <div class="row">
                                           <div class="col-md-4 form-group mb-3">
-                                            <label  class="col-form-label" for="nomregime">Nom du regime:</label>
-                                            <input class="form-control" type="text" name="nomregime" id="nomregime">
+                                            <label  class="col-form-label" for="nomregime">Nom du regime </label>
+                                            <input  type="text" name="nomregime" id="nomregime">
                                           </div>
                                         </div>
 
                                         <div class="row">
                                           <div class="col-md-12 form-group">
-                                            <input type="submit" value="Ajouter/Creer regime" class="btn btn-primary rounded-0 py-2 px-4">
+                                            <input style="border-radius: 10px;" type="submit" value="Ajouter/Creer regime" class="btn btn-primary rounded-0 py-2 px-4">
                                           </div>
                                         </div>
                                       </form>
