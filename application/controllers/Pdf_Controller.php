@@ -13,7 +13,7 @@ class Pdf_Controller extends CI_Controller {
         $pdf->AddPage();
 
         // Définir les en-têtes
-        $header = array('Regime', 'Nom', 'Apport', 'Frequence', 'Prix');
+        $header = array('Regime', 'Nom', 'Apport en kg', 'Frequence', 'Prix en Ar');
         $pdf->setHeader($header);
 
         // Définir le titre
