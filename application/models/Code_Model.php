@@ -33,6 +33,16 @@ class Code_Model extends CI_Model
         }
     }  
 
+    public function getCodesByID($id){
+        $query = $this->db->get_where('Code',array('idCode'=> $id));
+    
+        if($query->num_rows() === 1){
+            return $query->result_array()[0];
+        }else{
+            return array();
+        }
+    } 
+
     public function checkCode($code, $idProfile){
         $sql = "SELECT code, isUsed, montant FROM code WHERE code = '$code'";
         $query = $this->db->query($sql);
@@ -54,9 +64,9 @@ class Code_Model extends CI_Model
     }
     
 
-    public function getCodeValid()
+    public function getCodeValid($idProfile)
     {
-        $sql= "select * from code where isUsed = 0";
+        $sql= "select * from code where isUsed = 0 AND idCode NOT IN (SELECT idCode FROM PENDINGWALLET WHERE idProfile=".$idProfile." and status=0 )";
         $query = $this->db->query($sql);
         $result = $query->result_array();
 

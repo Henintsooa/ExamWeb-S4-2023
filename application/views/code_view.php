@@ -51,7 +51,7 @@
     </div>
     <!-- form regime -->
     <div class="code_form">
-        <h1>INSERTION REGIME</h1>
+        <h1>INSERTION CODE</h1>
         <form method="POST" id="codeForm" >
 
             <label for="code">Code :</label>
@@ -64,5 +64,15 @@
         </form>
         <p id="errorContainerCode"></p>
     </div>
+
+    <?php 
+    foreach ($pendings as $pending) { ?>
+        <p>Username: <?php echo $pending['Profile']['username']; ?></p>
+        <p>Code: <?php echo $pending['Code']['code']; ?></p>
+        <p>Montant: <?php echo $pending['Code']['montant']; ?></p>
+        <a href="<?php echo base_url("Code_Controller/accept?idProfile=".$pending['Profile']['idProfile'])."&idCode=".$pending['Code']['idCode'] ; ?>">accepter</a>
+        <a href="<?php echo base_url("Code_Controller/refuse?idProfile=".$pending['Profile']['idProfile'])."&idCode=".$pending['Code']['idCode'] ; ?>">refuser</a>
+    <?php } ?>
+
 </body>
 </html>
