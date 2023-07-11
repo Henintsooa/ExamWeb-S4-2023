@@ -38,7 +38,7 @@
                         console.log("HI IM HERE");
 
                         if(xhr.status === 200){
-                            if(xhr.responseText === 'success'){
+                            if(xhr.responseText.includes('success')){
                                 window.location.href = '<?php echo base_url("Home_Controller") ; ?>';
                             }else{
                                 errorContainer.textContent = 'Identifiants Invalides';
@@ -65,7 +65,7 @@
                         console.log("HI IM HERE NOW");
 
                         if(xhr.status === 200){
-                            if(xhr.responseText === 'success'){
+                            if(xhr.responseText.includes('success')){
                                 window.location.href = '<?php echo base_url("Home_Controller") ; ?>';
                             }else{
                                 errorSignup.textContent = 'Formulaires Invalides';

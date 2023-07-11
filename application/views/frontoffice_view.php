@@ -24,11 +24,13 @@
                 xhr.onreadystatechange = function() {
                     if(xhr.readyState === 4){
                         console.log("HI IM HERE");
+                        console.log(xhr.responseText); 
+                        console.log(xhr.status);
 
                         if(xhr.status === 200){
                             if(xhr.responseText !== 'error'){
 
-                                var suggestions = JSON.parse(xhr.responseText);
+                                var suggestions = JSON.parse(xhr.responseText.split("<")[0]);
                                 var suggestionsDiv = document.getElementById("listsuggestion");
 
                                 var html = "";

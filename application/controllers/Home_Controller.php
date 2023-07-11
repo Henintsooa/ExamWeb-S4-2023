@@ -10,10 +10,10 @@ class Home_Controller extends CI_Controller {
 
             if( $viewData['userdata']['privilege'] == 1 ){
 
-                redirect('home_controller/loadbackoffice');
+                redirect('Home_Controller/loadbackoffice');
 
             }else{
-                redirect('home_controller/loadfrontoffice');
+                redirect('Home_Controller/loadfrontoffice');
             }             
         }else{
             redirect('welcome');
