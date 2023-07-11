@@ -80,6 +80,12 @@ CREATE TABLE Wallet(
     FOREIGN KEY(idProfile) REFERENCES Profile(idProfile)
 );
 
+INSERT INTO Wallet VALUES(1,0);
+INSERT INTO Wallet VALUES(2,0);
+INSERT INTO Wallet VALUES(3,0);
+INSERT INTO Wallet VALUES(4,0);
+
+
 CREATE TABLE Code(
     idCode INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     montant double,
@@ -110,19 +116,14 @@ CREATE TABLE PendingWallet(
     FOREIGN KEY(idCode) REFERENCES Code(idCode)
 );
 
-INSERT INTO Profile(username,passw,privilege) VALUES("admin","admin",1);
-
-INSERT INTO TypeActivite(nom) VALUES ('Sport');
-INSERT INTO TypeActivite(nom) VALUES ('Repas');
-
 create or replace view reduirePoids as SELECT idRegime, SUM(apport) AS resultat
-FROM activite
-JOIN regime ON activite.idActivite = regime.idActivite
+FROM Activite
+JOIN Regime ON Activite.idActivite = Regime.idActivite
 GROUP BY idRegime
 HAVING resultat < 0;
 
 create or replace view augmenterPoids as SELECT idRegime, SUM(apport) AS resultat
-FROM activite
-JOIN regime ON activite.idActivite = regime.idActivite
+FROM Activite
+JOIN Regime ON Activite.idActivite = Regime.idActivite
 GROUP BY idRegime
 HAVING resultat > 0;

@@ -129,7 +129,7 @@
                 <div class="row align-items-stretch no-gutters contact-wrap">
                     <div class="col-md-12">
                         <div class="form h-100">
-                            <h3>Bienvenu(e), <?php echo $userdata['username'] ;?> </h3>
+                            <h3>Bienvenu(e), <?php echo $userdata['username'] ;?> ! votre solde est de <?php echo $wallet['montant'] ;?> Ariary</h3>
 
                             <!-- form userdata -->    
                             <div class="userDataForm">

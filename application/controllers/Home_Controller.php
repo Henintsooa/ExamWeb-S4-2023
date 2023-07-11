@@ -51,9 +51,11 @@ class Home_Controller extends CI_Controller {
         session_start();
         
         $this->load->model("Code_Model");
+        $this->load->model("Wallet_Model");
 
         $viewData['userdata'] = $_SESSION['userdata'];
         $viewData['codes'] = $this->Code_Model->getCodeValid($_SESSION['userdata']['idProfile']);
+        $viewData['wallet'] = $this->Wallet_Model->getWallet($_SESSION['userdata']['idProfile']);
 
         $this->load->view('frontoffice_view', $viewData);
 
