@@ -257,7 +257,7 @@
                         <!-- diet session -->
                         <!-- form activite -->
                         <div class="activite_form">
-                        <div class="content">
+                        
                           <div class="container">
                             <div class="row align-items-stretch no-gutters contact-wrap">
                               <div class="col-md-12">
@@ -307,45 +307,66 @@
                                           <input type="submit" value="Créer activité" class="btn btn-primary rounded-0 py-2 px-4"> 
                                           </div>
                                         </div>
-
                                     </form>
                                     <p id="errorContainer">  </p>
+
+                                    <!-- form regime -->
+                                  <div class="regime_form">
+                                      <h3>INSERTION REGIME</h3>
+                                      <form class="mb-5" method="POST" id="regimeForm">
+                                        <div class="row">
+                                          <div class="col-md-4 form-group mb-3">
+                                            <label class="col-form-label" for="idactivite">Nom de l'activité</label>
+                                            <select class="form-control" name="idactivite" id="idactivite">
+                                                <?php foreach ($activites as $activite) { ?>
+                                                    <option value="<?php echo $activite['idActivite'] ; ?>"> <?php echo $activite['nom'] ; ?> </option>
+                                                <?php } ?>
+                                            </select>
+                                          </div>
+                                        </div>
+                                          
+                                        <div class="row">
+                                          <div class="col-md-4 form-group mb-3">
+                                            <label class="col-form-label" for="idregime">Nom du regime</label>
+                                            <select class="form-control" name="idregime" id="idregime">
+                                                <option value="99999">nouveau regime</option>
+                                                <?php foreach ($regimes as $regime) { ?>
+                                                    <option value="<?php echo $regime['idRegime'] ; ?>/<?php echo $regime['nom'] ; ?>"> <?php echo $regime['nom'] ; ?> </option>
+                                                <?php } ?>
+                                            </select>
+                                          </div>
+                                        </div>
+
+                                        <div class="row">
+                                          <div class="col-md-4 form-group mb-3">
+                                            <label class="col-form-label" for="jourActivite">Jour d'Activite </label>
+                                            <input class="form-control" type="number" step="1" name="jourActivite" id="jourActivite" required min=0>
+                                          </div>
+                                        </div>
+                                          
+                                        <div class="row">
+                                          <div class="col-md-4 form-group mb-3">
+                                            <label class="col-form-label" for="finActivite">Durée Regime (jour)</label>
+                                            <input class="form-control" type="number" step="1" name="finActivite" id="finActivite" required min=0>
+                                          </div>
+                                        </div>
+
+                                        <div class="row">
+                                          <div class="col-md-4 form-group mb-3">
+                                            <label  class="col-form-label" for="nomregime">Nom du regime:</label>
+                                            <input class="form-control" type="text" name="nomregime" id="nomregime">
+                                          </div>
+                                        </div>
+
+                                        <div class="row">
+                                          <div class="col-md-12 form-group">
+                                            <input type="submit" value="Ajouter/Creer regime" class="btn btn-primary rounded-0 py-2 px-4">
+                                          </div>
+                                        </div>
+                                      </form>
+                                      <p id="errorContainerRegime"></p>
+                                    </div>
                                 </div>
-                                <!-- form regime -->
-                                <div class="regime_form">
-                                    <h1>INSERTION REGIME</h1>
-                                    <form method="POST" id="regimeForm" >
-
-                                        <label for="idactivite">Nom de l'activité:</label>
-                                        <select name="idactivite" id="idactivite">
-                                            <?php foreach ($activites as $activite) { ?>
-                                                <option value="<?php echo $activite['idActivite'] ; ?>"> <?php echo $activite['nom'] ; ?> </option>
-                                            <?php } ?>
-                                        </select>
-                                        <br><br>
-
-                                        <label for="idregime">Nom du regime:</label>
-                                        <select name="idregime" id="idregime">
-                                            <option value="99999">nouveau regime</option>
-                                            <?php foreach ($regimes as $regime) { ?>
-                                                <option value="<?php echo $regime['idRegime'] ; ?>/<?php echo $regime['nom'] ; ?>"> <?php echo $regime['nom'] ; ?> </option>
-                                            <?php } ?>
-                                        </select>
-                                        <br><br>
-
-                                        <label for="jourActivite">Jour d'Activite :</label>
-                                        <input type="number" step="1" name="jourActivite" id="jourActivite" required min=0><br><br>
-
-                                        <label for="finActivite">Durre Regime (jour) :</label>
-                                        <input type="number" step="1" name="finActivite" id="finActivite" required min=0><br><br>
-
-                                        <label for="nomregime">Nom du regime:</label>
-                                        <input type="text" name="nomregime" id="nomregime"><br><br>
-
-                                        <input type="submit" value="Ajouter/Creer regime">
-                                    </form>
-                                    <p id="errorContainerRegime"></p>
-                                  </div>
                               </div>
                             </div>
                           </div>
@@ -452,6 +473,13 @@
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src=" <?= base_url("assets/js/material-dashboard.min.js?v=3.1.0")?>"></script>
+
+  <?= base_url("js/main.js")?>
+  <script src="<?= base_url("assets/js/jquery-3.3.1.min.js")?>"></script>
+  <script src="<?= base_url("assets/js/popper.min.js")?>"></script>
+  <script src="<?= base_url("assets/js/bootstrap.min.js")?>"></script>
+  <script src=" <?= base_url("assets/js/jquery.validate.min.js")?>"></script>
+  <script src="<?= base_url("assets/js/main.js")?>"></script>
 </body>
 
 </html>
