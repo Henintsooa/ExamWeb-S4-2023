@@ -26,7 +26,7 @@ CREATE TABLE TypeActivite(
 
 CREATE TABLE Activite(
     idActivite INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    nom int,
+    nom VARCHAR(200),
     idType int,
     apport double,
     frequence int,
@@ -39,14 +39,17 @@ CREATE TABLE Regime(
     idActivite int,
     jourActivite int,
     finActivite int,
+    nom VARCHAR(200),
     FOREIGN KEY(idActivite) REFERENCES Activite(idActivite)
 );
 
 CREATE TABLE Objectif(
     idObjectif INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    idProfile int,
     idRegime int,
     poids double,
     montant double,
+    repetition int,
     FOREIGN KEY(idRegime) REFERENCES Regime(idRegime)
 );
 
@@ -60,7 +63,7 @@ CREATE TABLE Code(
     idCode INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     montant double,
     isUsed int,
-    code VARCHAR(255)
+    code VARCHAR(255) unique
 );
 
 CREATE TABLE PendingWallet(
@@ -70,3 +73,20 @@ CREATE TABLE PendingWallet(
     FOREIGN KEY(idProfile) REFERENCES Profile(idProfile),
     FOREIGN KEY(idCode) REFERENCES Code(idCode)
 );
+
+INSERT INTO Profile(username,passw,privilege) VALUES("admin","admin",1);
+
+INSERT INTO TypeActivite(nom) VALUES ('Sport');
+INSERT INTO TypeActivite(nom) VALUES ('Repas');
+
+create or replace view reduirePoids as SELECT idRegime, SUM(apport) AS resultat
+FROM Activite
+JOIN Regime ON Activite.idActivite = Regime.idActivite
+GROUP BY idRegime
+HAVING resultat < 0;
+
+create or replace view augmenterPoids as SELECT idRegime, SUM(apport) AS resultat
+FROM Activite
+JOIN Regime ON Activite.idActivite = Regime.idActivite
+GROUP BY idRegime
+HAVING resultat > 0;

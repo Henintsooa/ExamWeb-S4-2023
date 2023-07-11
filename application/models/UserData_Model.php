@@ -29,5 +29,43 @@ class UserData_Model extends CI_Model
         }
     }
     
+    public function getStatistiqueFemale()
+    {
+
+        $sql = "select count(sexe) as femme from UserData join Profile on Profile.idprofile=UserData.idProfile where sexe=1 and privilege=0";
+        $query = $this->db->query($sql);
+        $row = $query->row_array();
+    
+        if (!empty($row)) {
+            return $row['femme'];
+        } else {
+            return 0;
+        }
+    }
+    public function getStatistiqueMale()
+    {
+        $sql = "select count(sexe) as homme from UserData join Profile on Profile.idprofile=UserData.idprofile where sexe=0 and privilege=0";
+
+        $query = $this->db->query($sql);
+        $row = $query->row_array();
+    
+        if (!empty($row)) {
+            return $row['homme'];
+        } else {
+            return 0;
+        }
+    }
+
+    public function getUserDataByIdUserData($idUserData)
+    {
+        $query = $this->db->get_where('UserData', array('idUserData' => $idUserData));
+
+        if ($query->num_rows() > 0) {
+            return $query->result_array();
+        } else {
+            return array();
+        }
+    }
+
 }
 ?>

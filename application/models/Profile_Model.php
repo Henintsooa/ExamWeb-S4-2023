@@ -48,5 +48,47 @@ class Profile_Model extends CI_Model
             return array();
         }
     }
+
+    public function getProfileByID($idProfile){
+        $query = $this->db->get_where('Profile',array('idProfile'=>$idProfile));
+
+        if($query->num_rows() === 1){
+            return $query->result_array()[0];
+        }else{
+            return array();
+        }
+    }
+
+    public function updateNomProfile($idProfile, $username){
+        $data = array(
+            'username' => $username
+        );
+    
+        $this->db->where('idProfile', $idProfile);
+        $result = $this->db->update('Profile', $data);
+        if($result){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public function updatePassWProfile($idProfile, $passw){
+        $data = array(
+            'passw' => $passw
+        );
+    
+        $this->db->where('idProfile', $idProfile);
+        $result = $this->db->update('passw', $data);
+        if($result){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function deconnexion ()
+    {
+        session_destroy();
+    }
 }
 ?>

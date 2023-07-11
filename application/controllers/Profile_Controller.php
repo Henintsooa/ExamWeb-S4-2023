@@ -31,17 +31,19 @@ class Profile_Controller extends CI_Controller {
         header('Access-Control-Allow-Origin: * ');
     
         $this->load->model('Profile_Model');
+        $this->load->model('Wallet_Model');
 
         $username = $this->input->post('username');
         $password = $this->input->post('password');
 
-        $result = $this->Profile_Model->createProfile($username, $password);
+        $result_profile = $this->Profile_Model->createProfile($username, $password);
 
-        if ($result) {
+        if ($result_profile) {
             session_start();
 
             $userdata = $this->Profile_Model->getProfileData($username)[0];
-            if(empty($userdata)){
+            $result_wallet = $this->Wallet_Model->createWallet($userdata['idProfile'], 0);
+            if(empty($userdata) || !$result_wallet){
                 echo 'error' ;
             }
 

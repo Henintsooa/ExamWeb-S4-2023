@@ -3,7 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <title>Login/Register</title>
+
+
+	<style>body{padding-top: 60px;}</style>
+
+    <link href="<?= base_url("assets/css/bootstrap.css")?>" rel="stylesheet" />
+
+	<link href="<?= base_url("assets/css/login-register.css")?>" rel="stylesheet" />
+	<script src="<?= base_url("assets/js/jquery-1.10.2.js")?>" type="text/javascript"></script>
+	<script src="<?= base_url("assets/js/bootstrap.js")?>" type="text/javascript"></script>
+	<script src="<?= base_url("assets/js/login-register.js")?>" type="text/javascript"></script>
 </head>
 <!-- check login via httprequest ajax -->
 <script>
@@ -27,7 +38,7 @@
                         console.log("HI IM HERE");
 
                         if(xhr.status === 200){
-                            if(xhr.responseText === 'success'){
+                            if(xhr.responseText.includes('success')){
                                 window.location.href = '<?php echo base_url("Home_Controller") ; ?>';
                             }else{
                                 errorContainer.textContent = 'Identifiants Invalides';
@@ -54,7 +65,7 @@
                         console.log("HI IM HERE NOW");
 
                         if(xhr.status === 200){
-                            if(xhr.responseText === 'success'){
+                            if(xhr.responseText.includes('success')){
                                 window.location.href = '<?php echo base_url("Home_Controller") ; ?>';
                             }else{
                                 errorSignup.textContent = 'Formulaires Invalides';
@@ -71,27 +82,76 @@
 </script>
 
 <body>
-    <div class="login-session">
-        <form id="loginForm" method="post">
-            <input type="text" name="username" placeholder="Nom d'utilisateur">
-            <input type="password" name="password" placeholder="Mot de passe">
-            <button type="submit">Se connecter</button>
-        </form>
-
-        <?php echo base_url("Profile_Controller/CheckLogin") ;?>
-        <div id="errorContainer"></div>
+    <div class="container">
+    <H1>Obtenez votre corps de rêve</H1>
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+            
+                <div class="row">
+                 <a class="btn big-login" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">Log in</a>
+                 <a class="btn big-register" data-toggle="modal" href="javascript:void(0)" onclick="openRegisterModal();">Register</a></div>
+                </div>  
+            </div>    
+            </div>
+            <div class="col-sm-4"></div> 
+    <div class="modal fade login" id="loginModal">
+        <div class="modal-dialog login animated">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Connectez-vous</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="box">
+                        <div class="form loginBox">
+                             <div class="content">
+                                <form action="" id="loginForm" method="post" accept-charset="UTF-8">
+                                    <input id="email" class="form-control" type="text" name="username" placeholder="Nom d'utilisateur">
+                                    <input id="password" class="form-control" type="password" name="password" placeholder="Mot de passe">
+                                    <button class="btn btn-default btn-login" type="submit">Se connecter</button>
+                                </form>
+                                <div id="errorContainer"></div>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="box">
+                    <div class="content registerBox" style="display:none;">
+                    <div class="form">
+                        <div class="signup-session">
+                            <form id="signupForm" method="post" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
+                                <input id="email" class="form-control" type="text" name="username" placeholder="Nom d'utilisateur">
+                                <input id="password" class="form-control" type="password" name="password" placeholder="Mot de passe">
+                                <button class="btn btn-default btn-register" type="submit">S'inscrire</button>
+                            </form>
+                            <div id="errorSignup"></div>
+                        </div>
+                    </div>
+                        
+                    </div>
+                       
+                    </div>
+                </div>
+                <div class="modal-footer">
+                     <div class="forgot login-footer">
+                        <span>inscrivez-vous <h4> Back-Office : username = admin/ pwd = admin <br> Front-Office : username = Jean / pwd = 123 </h4>
+                            <a href="javascript: showRegisterForm();">créez un compte</a>
+                        ?</span>
+                    </div>
+                    <div class="forgot register-footer" style="display:none">
+                        <span>Avez-vous déjà un compte?</span>
+                        <a href="javascript: showLoginForm();">Login</a>
+                    </div>
+                </div>
+            </div>  
+        </div>
     </div>
-
-    <div class="signup-session">
-        <form id="signupForm" method="post">
-            <input type="text" name="username" placeholder="Nom d'utilisateur">
-            <input type="password" name="password" placeholder="Mot de passe">
-            <button type="submit">S'inscrire</button>
-        </form>
-
-        <?php echo base_url("Profile_Controller/CheckLogin") ;?>
-        <div id="errorSignup"></div>
     </div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        openLoginModal();
+    });
+</script>
+   
 </body>
 </html>
 
