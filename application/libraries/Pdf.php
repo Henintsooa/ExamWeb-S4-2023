@@ -90,6 +90,7 @@ function Header()
             $this->Cell($w[4], 7, $row['prix'], 1);
             $this->Ln();
         }
+        
     }
 }
 
