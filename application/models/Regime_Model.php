@@ -105,7 +105,7 @@ class Regime_Model extends CI_Model
 
     public function getPrixParDuree($idRegime)
     {
-        $sql = "SELECT SUM(prix) AS prixTotal FROM activite JOIN regime ON activite.idActivite = regime.idActivite WHERE idRegime = '$idRegime'";
+        $sql = "SELECT SUM(prix) AS prixTotal FROM Activite JOIN Regime ON Activite.idActivite = Regime.idActivite WHERE idRegime = '$idRegime'";
         $query = $this->db->query($sql);
         $row = $query->row_array();
     
@@ -118,7 +118,7 @@ class Regime_Model extends CI_Model
     
     public function getLastRegime()
     {
-        $sql= "select max(idregime) as lastIdRegime from regime";
+        $sql= "select max(idregime) as lastIdRegime from Regime";
         $query = $this->db->query($sql);
         $row = $query->row_array();
     
@@ -167,7 +167,7 @@ class Regime_Model extends CI_Model
 
     public function getNbrVente()
     {
-        $sql = "select count(idObjectif) as nbrVente from objectif";
+        $sql = "select count(idObjectif) as nbrVente from Objectif";
         $query = $this->db->query($sql);
         $row = $query->row_array();
     
@@ -180,7 +180,7 @@ class Regime_Model extends CI_Model
     
     public function getActivitesRegimes($id)
     {
-        $sql= "select regime.idActivite as regime,Activite.nom,apport,frequence,prix from regime join activite on regime.idActivite=activite.idActivite where idregime=$id";
+        $sql= "select Regime.idActivite as Regime,Activite.nom,apport,frequence,prix from Regime join Activite on Regime.idActivite=Activite.idActivite where idregime=$id";
             $query = $this->db->query($sql);
             $result = array();
 
