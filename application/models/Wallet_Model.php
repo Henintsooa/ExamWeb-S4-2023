@@ -39,7 +39,7 @@ class Wallet_Model extends CI_Model
     }
     public function transaction($somme,$idProfile)
     {
-        $sql = "SELECT (montant-$somme) as solde FROM wallet where idProfile=$idProfile";
+        $sql = "UPDATE wallet SET montant = montant - $somme WHERE idProfile = $idProfile";
         $this->db->query($sql);
     }
 
