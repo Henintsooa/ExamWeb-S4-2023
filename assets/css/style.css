@@ -65,10 +65,11 @@ a {
   font-size: 11px;
   letter-spacing: .2rem;
   text-transform: uppercase;
-  border-radius: 10px !important; }
+
+  border-radius: 30px !important; }
   .btn.btn-primary {
-    border-radius: 15px;
-    background: #EC407A;
+    border-radius: 10px;
+    background: #ef4339;
     color: #fff;
     -webkit-box-shadow: 0 15px 30px 0 rgba(239, 67, 57, 0.2);
     box-shadow: 0 15px 30px 0 rgba(239, 67, 57, 0.2); }
@@ -194,4 +195,3 @@ label.error {
   border-radius: 8px;
   color: aliceblue;
 }
-
