@@ -13,6 +13,11 @@
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
   <!-- Nucleo Icons -->
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="<?= base_url("assets/fonts/icomoon/style.css")?>">
+  <link rel="stylesheet" href="<?= base_url("assets/css/bootstrap.min.css")?>">
+  <link rel="stylesheet" href="<?= base_url("assets/css/style.css")?>">
   
   <link href="<?= base_url("assets/css/nucleo-icons.css")?>" rel="stylesheet" />
   <link href="<?= base_url("assets/css/nucleo-svg.css")?>" rel="stylesheet" />
@@ -252,66 +257,88 @@
                         <!-- diet session -->
                         <!-- form activite -->
                         <div class="activite_form">
-                            <h1>INSERTION ACTIVITE</h1>
-                            <form method="POST" id="activiteForm" >
-                                <label for="nom">Nom de l'activité:</label>
-                                <input type="text" name="nom" id="nom" required><br><br>
+                        <div class="content">
+                          <div class="container">
+                            <div class="row align-items-stretch no-gutters contact-wrap">
+                              <div class="col-md-12">
+                                  <div class="form h-100">
+                                    <h3>INSERTION ACTIVITE</h3>
+                                        <form class="mb-5" method="POST" id="activiteForm" >
+                                          <div class="row">
+                                              <div class="col-md-6 form-group mb-3">
+                                                <label for="nom" class="col-form-label">Nom de l'activité</label>
+                                                <input type="text" class="form-control" name="nom" id="nom" required>
+                                              </div>
+                                          </div>
+                                        <div class="row">
+                                          <div class="col-md-6 form-group mb-3">
+                                            <label class="col-form-label" for="idtype">Type de l'activité</label>
+                                              <select class="form-control" name="idtype" id="idtype">
+                                                  <?php foreach ($typeActivites as $type) { ?>
+                                                      <option value="<?php echo $type['idType'] ; ?>"> <?php echo $type['nom'] ; ?> </option>
+                                                  <?php } ?>
+                                              </select>
+                                          </div>
+                                        </div>
 
-                                <label for="idtype">Type de l'activité:</label>
-                                <select name="idtype" id="idtype">
-                                    <?php foreach ($typeActivites as $type) { ?>
-                                        <option value="<?php echo $type['idType'] ; ?>"> <?php echo $type['nom'] ; ?> </option>
-                                    <?php } ?>
-                                </select>
-                                <br><br>
+                                        <div class="row">
+                                          <div class="col-md-6 form-group mb-3">
+                                            <label class="col-form-label" for="apport">Apport</label>
+                                            <input class="form-control" type="number" step="0.01" name="apport" id="apport" required>
+                                          </div>
+                                        </div>
 
-                                <label for="apport">Apport:</label>
-                                <input type="number" step="0.01" name="apport" id="apport" required><br><br>
+                                        
 
-                                <label for="frequence">Fréquence:</label>
-                                <input type="number" step="1" name="frequence" id="frequence" required min=0><br><br>
+                                        <label for="frequence">Fréquence:</label>
+                                        <input type="number" step="1" name="frequence" id="frequence" required min=0><br><br>
 
-                                <label for="prix">Prix:</label>
-                                <input type="number" step="0.01" name="prix" id="prix" required><br><br>
+                                        <label for="prix">Prix:</label>
+                                        <input type="number" step="0.01" name="prix" id="prix" required><br><br>
 
-                                <input type="submit" value="Créer activité">
-                            </form>
-                            <p id="errorContainer">  </p>
+                                        <input type="submit" value="Créer activité">
+                                    </form>
+                                    <p id="errorContainer">  </p>
+                                </div>
+                                <!-- form regime -->
+                                <div class="regime_form">
+                                    <h1>INSERTION REGIME</h1>
+                                    <form method="POST" id="regimeForm" >
+
+                                        <label for="idactivite">Nom de l'activité:</label>
+                                        <select name="idactivite" id="idactivite">
+                                            <?php foreach ($activites as $activite) { ?>
+                                                <option value="<?php echo $activite['idActivite'] ; ?>"> <?php echo $activite['nom'] ; ?> </option>
+                                            <?php } ?>
+                                        </select>
+                                        <br><br>
+
+                                        <label for="idregime">Nom du regime:</label>
+                                        <select name="idregime" id="idregime">
+                                            <option value="99999">nouveau regime</option>
+                                            <?php foreach ($regimes as $regime) { ?>
+                                                <option value="<?php echo $regime['idRegime'] ; ?>/<?php echo $regime['nom'] ; ?>"> <?php echo $regime['nom'] ; ?> </option>
+                                            <?php } ?>
+                                        </select>
+                                        <br><br>
+
+                                        <label for="jourActivite">Jour d'Activite :</label>
+                                        <input type="number" step="1" name="jourActivite" id="jourActivite" required min=0><br><br>
+
+                                        <label for="finActivite">Durre Regime (jour) :</label>
+                                        <input type="number" step="1" name="finActivite" id="finActivite" required min=0><br><br>
+
+                                        <label for="nomregime">Nom du regime:</label>
+                                        <input type="text" name="nomregime" id="nomregime"><br><br>
+
+                                        <input type="submit" value="Ajouter/Creer regime">
+                                    </form>
+                                    <p id="errorContainerRegime"></p>
+                                  </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                        <!-- form regime -->
-                        <div class="regime_form">
-                            <h1>INSERTION REGIME</h1>
-                            <form method="POST" id="regimeForm" >
-
-                                <label for="idactivite">Nom de l'activité:</label>
-                                <select name="idactivite" id="idactivite">
-                                    <?php foreach ($activites as $activite) { ?>
-                                        <option value="<?php echo $activite['idActivite'] ; ?>"> <?php echo $activite['nom'] ; ?> </option>
-                                    <?php } ?>
-                                </select>
-                                <br><br>
-
-                                <label for="idregime">Nom du regime:</label>
-                                <select name="idregime" id="idregime">
-                                    <option value="99999">nouveau regime</option>
-                                    <?php foreach ($regimes as $regime) { ?>
-                                        <option value="<?php echo $regime['idRegime'] ; ?>/<?php echo $regime['nom'] ; ?>"> <?php echo $regime['nom'] ; ?> </option>
-                                    <?php } ?>
-                                </select>
-                                <br><br>
-
-                                <label for="jourActivite">Jour d'Activite :</label>
-                                <input type="number" step="1" name="jourActivite" id="jourActivite" required min=0><br><br>
-
-                                <label for="finActivite">Durre Regime (jour) :</label>
-                                <input type="number" step="1" name="finActivite" id="finActivite" required min=0><br><br>
-
-                                <label for="nomregime">Nom du regime:</label>
-                                <input type="text" name="nomregime" id="nomregime"><br><br>
-
-                                <input type="submit" value="Ajouter/Creer regime">
-                            </form>
-                            <p id="errorContainerRegime"></p>
                         </div>
                   </tbody>
                 </table>
