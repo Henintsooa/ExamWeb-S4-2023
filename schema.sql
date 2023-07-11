@@ -40,7 +40,8 @@ CREATE TABLE Regime(
     jourActivite int,
     finActivite int,
     nom VARCHAR(200),
-    FOREIGN KEY(idActivite) REFERENCES Activite(idActivite)
+    FOREIGN KEY(idActivite) REFERENCES Activite(idActivite),
+    PRIMARY KEY(idRegime,idActivite,jourActivite)
 );
 
 CREATE TABLE Objectif(
