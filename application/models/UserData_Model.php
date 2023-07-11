@@ -31,7 +31,7 @@ class UserData_Model extends CI_Model
     
     public function getStatistiqueFemale()
     {
-        $sql = "select count(sexe) as femme from userdata join profile on profile.idprofile=userdata.idprofile where sexe=0 and privilege=0";
+        $sql = "select count(sexe) as femme from userdata join profile on profile.idprofile=userdata.idprofile where sexe=1 and privilege=0";
         $query = $this->db->query($sql);
         $row = $query->row_array();
     
@@ -43,7 +43,7 @@ class UserData_Model extends CI_Model
     }
     public function getStatistiqueMale()
     {
-        $sql = "select count(sexe) as homme from userdata join profile on profile.idprofile=userdata.idprofile where sexe=1 and privilege=0";
+        $sql = "select count(sexe) as homme from userdata join profile on profile.idprofile=userdata.idprofile where sexe=0 and privilege=0";
         $query = $this->db->query($sql);
         $row = $query->row_array();
     

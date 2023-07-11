@@ -10,6 +10,15 @@
   <title>
       Back office
   </title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.css">
+  <style>
+    /* Styles pour les graphiques */
+    .chart-container {
+      width: 400px;
+      height: 400px;
+      margin-bottom: 30px;
+    }
+  </style>
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
   <!-- Nucleo Icons -->
@@ -25,7 +34,9 @@
   <!-- Nepcha Analytics (nepcha.com) -->
   <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+  
 </head>
+
 <script>
     document.addEventListener(
         'DOMContentLoaded', function(){
@@ -240,13 +251,59 @@
                         <h2>Nombre de ventes :</h2>
                         <p><?php echo $nbrVente; ?></p>
 
-                        <h2>Nombre d'hommes :</h2>
-                        <p><?php echo $nbrHomme; ?></p>
+                        <div class="chart-container">
+                        <h2>Statistique du nombre d'homme et de femme inscrit :</h2>
+                        <canvas id="donutChart"></canvas>
+                        <!-- <canvas id="lineChart"></canvas> -->
+                        </div>
 
-                        <h2>Nombre de femmes :</h2>
-                        <p><?php echo $nbrFemme; ?></p>
                 </table>
-              </div>
+              </div>  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Donut Chart
+      var donutData = {
+        labels: ['Homme', 'Femme'],
+        datasets: [{
+          data: [<?php echo $nbrHomme; ?>, <?php echo $nbrFemme; ?>],
+          backgroundColor: ['#FF6384', '#36A2EB']
+        }]
+      };
+
+      var donutOptions = {
+        responsive: true,
+        maintainAspectRatio: false
+      };
+
+      var donutChart = new Chart(document.getElementById('donutChart'), {
+        type: 'doughnut',
+        data: donutData,
+        options: donutOptions
+      });
+
+      // Line Chart
+      var lineData = {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+        datasets: [{
+          label: 'Ventes',
+          data: [50, 60, 70, 65, 75, 80],
+          borderColor: '#3e95cd',
+          fill: false
+        }]
+      };
+
+      var lineOptions = {
+        responsive: true,
+        maintainAspectRatio: false
+      };
+
+      var lineChart = new Chart(document.getElementById('lineChart'), {
+        type: 'line',
+        data: lineData,
+        options: lineOptions
+      });
+    });
+  </script>
             </div>
           </div>
         </div>
