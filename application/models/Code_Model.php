@@ -47,11 +47,12 @@ class Code_Model extends CI_Model
     }
     
 
-    public function ajoutSolde($somme,$idProfile)
+    public function ajoutSolde($somme, $idProfile)
     {
-        $sql = "SELECT (montant+$somme) as solde FROM wallet where idProfile=$idProfile";
+        $sql = "UPDATE wallet SET montant = montant + $somme WHERE idProfile = $idProfile";
         $this->db->query($sql);
     }
+    
 
     public function getCodeValid()
     {
