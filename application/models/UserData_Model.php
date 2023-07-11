@@ -53,5 +53,17 @@ class UserData_Model extends CI_Model
             return 0;
         }
     }
+
+    public function getUserDataByIdUserData($idUserData)
+    {
+        $query = $this->db->get_where('UserData', array('idUserData' => $idUserData));
+
+        if ($query->num_rows() > 0) {
+            return $query->result_array();
+        } else {
+            return array();
+        }
+    }
+
 }
 ?>

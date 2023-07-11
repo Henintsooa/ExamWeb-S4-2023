@@ -24,26 +24,34 @@ class PDF extends FPDF
 
 
     // En-tête
-    function Header()
-    {
-        // Logo
-        $this->SetFont('Times', 'B', 10);
-        $this->SetTextColor(196, 201, 199);
-        // Décalage à droite
-        $this->Cell(130);
-        // Titre
-        $this->SetFont('Times', 'B', 13);
-        $this->SetTextColor(34, 66, 124);
-        $this->Cell(30, 10, $this->title, 0, 0, 'C');
-        $this->Ln(5);
-        // Saut de ligne
-        $this->Ln(10);
-        
-        // Titre de la page
-        $this->SetFont('Times', 'B', 14);
-        $this->Cell(0, 10, $this->title, 0, 1, 'C');
-        $this->Ln(10);
-    }
+    // En-tête
+function Header()
+{
+    // Logo
+    $this->SetFont('Times', 'B', 10);
+    $this->SetTextColor(196, 201, 199);
+    // Décalage à droite
+    $this->Cell(130);
+    // Titre principal
+    $this->SetFont('Times', 'B', 13);
+    $this->SetTextColor(34, 66, 124);
+    $this->Cell(30, 10, $this->title, 0, 0, 'C');
+    $this->Ln(5);
+    // Saut de ligne
+    $this->Ln(10);
+
+    // Titre de la page
+    $this->SetFont('Times', 'B', 14);
+    $this->Cell(0, 10, 'Regime a suivre', 0, 1, 'C');
+    $this->Ln(10);
+
+    // Données supplémentaires
+    $this->SetFont('Times', '', 12);
+    $this->Cell(0, 10, 'Date :', 0, 1, 'L');
+    $this->Cell(0, 10, 'Nom du client :', 0, 1, 'L');
+    $this->Ln(10);
+}
+
     
 
     // Pied de page
