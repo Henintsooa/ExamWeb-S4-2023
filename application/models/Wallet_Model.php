@@ -20,7 +20,7 @@ class Wallet_Model extends CI_Model
         $query = $this->db->get_where('Wallet', array('idProfile' => $idProfile));
     
         if($query->num_rows() === 1){
-            return $query->row_array();
+            return $query->result_array()[0];
         }else{
             return array();
         }

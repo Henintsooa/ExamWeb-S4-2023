@@ -59,8 +59,21 @@ class Code_Model extends CI_Model
 
     public function ajoutSolde($somme, $idProfile)
     {
-        $sql = "UPDATE wallet SET montant = montant + $somme WHERE idProfile = $idProfile";
-        $this->db->query($sql);
+        $this->load->model("Wallet_Model");
+
+        $wallet = $this->Wallet_Model->getWallet($idProfile);
+
+        $data = array(
+            'montant' => $somme + $wallet['montant']
+        );
+        $this->db->where('idProfile', $idProfile);
+
+        $result = $this->db->update('Wallet', $data);
+        
+        if($result){
+            return true;
+        }
+        return false;
     }
     
 
@@ -75,6 +88,21 @@ class Code_Model extends CI_Model
         }
 
         return $result;
+    }
+
+    public function updateCodeStatus($idCode, $status){
+        $data = array(
+            'isUsed' => $status
+        );
+        $this->db->where('idCode', $idCode);
+
+        $result = $this->db->update('Code', $data);
+    
+        if($result){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 }

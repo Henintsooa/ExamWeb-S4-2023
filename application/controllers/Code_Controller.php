@@ -35,9 +35,14 @@ class Code_Controller extends CI_Controller
         $idProfile = $this->input->get('idProfile');
 
         $this->load->model('PendingWallet_Model');
+        $this->load->model('Code_Model');
 
         $result_1 = $this->PendingWallet_Model->updatePendingWalletStatus($idProfile, $idCode, 1);
-        $result_2 = $this->PendingWallet_Model->updatePendingWalletStatus('', $idCode, 1);
+        $result_2 = $this->PendingWallet_Model->updatePendingWalletStatus('', $idCode, 2);
+        $code = $this->Code_Model->getCodesByID($idCode);
+
+        $this->Code_Model->ajoutSolde($code['montant'], $idProfile);
+        $this->Code_Model->updateCodeStatus($idCode, 1);
 
         if($result_1 && $result_2){
             redirect("Home_Controller/loadCodeInterface");
