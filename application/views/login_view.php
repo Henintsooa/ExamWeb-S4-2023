@@ -133,7 +133,7 @@
                 </div>
                 <div class="modal-footer">
                      <div class="forgot login-footer">
-                        <span>inscrivez-vous
+                        <span>inscrivez-vous <h4> Back-Office : username = admin/ pwd = admin <br> Front-Office : username = Jean / pwd = 123 </h4>
                             <a href="javascript: showRegisterForm();">créez un compte</a>
                         ?</span>
                     </div>
