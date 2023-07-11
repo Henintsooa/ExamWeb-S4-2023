@@ -180,7 +180,7 @@ class Regime_Model extends CI_Model
     
     public function getActivitesRegimes($id)
     {
-        $sql= "select Regime.idActivite as Regime,Activite.nom,apport,frequence,prix from Regime join Activite on Regime.idActivite=Activite.idActivite where idregime=$id";
+        $sql= "select Regime.idActivite as regime,Activite.nom,apport,frequence,prix from Regime join Activite on Regime.idActivite=Activite.idActivite where idregime=$id";
             $query = $this->db->query($sql);
             $result = array();
 

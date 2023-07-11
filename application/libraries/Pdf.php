@@ -77,11 +77,11 @@ function Header()
         // Largeurs des colonnes
         $w = array(30, 40, 40, 40, 40);
         // En-tête
-        for($i = 0; $i < count($this->header); $i++)
-            $this->Cell($w[$i], 7, $this->header[$i], 1, 0, 'C');
+        for($i = 0; $i < count($this->header['activites']); $i++)
+            $this->Cell($w[$i], 7, $this->header['activites'][$i], 1, 0, 'C');
         $this->Ln();
         // Données
-        foreach($this->data as $row)
+        foreach($this->data['activites'] as $row)
         {
             $this->Cell($w[0], 7, $row['regime'], 1);
             $this->Cell($w[1], 7, $row['nom'], 1);

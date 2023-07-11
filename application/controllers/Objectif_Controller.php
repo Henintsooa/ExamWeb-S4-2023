@@ -14,7 +14,9 @@ class Objectif_Controller extends CI_Controller {
 
         $result = $this->Objectif_Model->createObjectif($_SESSION['userdata']['idProfile'],$idRegime, $apport, $montant, $repetition);
         if($result){
-            
+            redirect("Pdf_Controller?idregime=".$idRegime."&=montant=".$montant."&=repetition=".$repetition);
+        }else{
+            redirect("Home_Controller/loadFrontOffice");
         }
 
     }

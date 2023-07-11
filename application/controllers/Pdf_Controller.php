@@ -6,6 +6,9 @@ class Pdf_Controller extends CI_Controller {
 	{
        // Charger la bibliothèque Pdf
         $this->load->library('pdf');
+        $idRegime = $this->input->get("idregime");
+        $montant = $this->input->get("montant");
+        $repetition = $this->input->get("repetition");
 
         // Instancier la classe PDF
         $pdf = new Pdf();
@@ -13,7 +16,8 @@ class Pdf_Controller extends CI_Controller {
         $pdf->AddPage();
 
         // Définir les en-têtes
-        $header = array('Regime', 'Nom', 'Apport en kg', 'Frequence', 'Prix en Ar');
+        $header["activites"] = array('Regime', 'Nom', 'Apport en kg', 'Frequence', 'Prix en Ar');
+        $header["result"]= array('Montant','Duree');
         $pdf->setHeader($header);
 
         // Définir le titre
@@ -22,7 +26,11 @@ class Pdf_Controller extends CI_Controller {
 
         // Charger le modèle Regime_Model
         $this->load->model('Regime_Model');
-        $data = $this->Regime_Model->getActivitesRegimes(1);
+        $data['activites'] = $this->Regime_Model->getActivitesRegimes($idRegime);
+        $data['result'] = array(
+            "montant"=>$montant,
+            "repetition"=>$repetition
+        );
         $pdf->setData($data);
 
         
